@@ -18,6 +18,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () { return view('dashboard'); })->name('dashboard');
+    Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
     /*
     |--------------------------------------------------------------------------
     | Profile Routes
