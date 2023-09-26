@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             DogBreedSeeder::class,
+            RolesAndPermissionsSeeder::class
         ]);
 
         $user = User::factory()->create([
