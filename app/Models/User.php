@@ -42,4 +42,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @param $query
+     * @param $val
+     *
+     * @return mixed
+     */
+    public function scopeSearch($query, $val): mixed
+    {
+        return $query
+            ->where('first_name', 'like', '%' . $val . '%')
+            ->orwhere('last_name', 'like', '%' . $val . '%')
+            ->orwhere('email', 'like', '%' . $val . '%');
+    }
 }

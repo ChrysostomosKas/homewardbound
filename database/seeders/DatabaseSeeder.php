@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             DogBreedSeeder::class,
+        ]);
+
+        $user = User::factory()->create([
+            'email' => 'test@test.com',
+            'first_name' => 'Chrysostomos',
+            'last_name' => 'Kasapidis',
         ]);
     }
 }
