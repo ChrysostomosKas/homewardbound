@@ -9,5 +9,6 @@ class CatBreed extends Model
 {
     use HasFactory;
 
+    protected $table = 'cat_breeds';
     protected $fillable = ['name'];
 }

@@ -9,5 +9,6 @@ class HorseBreed extends Model
 {
     use HasFactory;
 
+    protected $table = 'horse_breeds';
     protected $fillable = ['name'];
 }
