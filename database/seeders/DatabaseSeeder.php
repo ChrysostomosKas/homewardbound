@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DogBreedSeeder::class,
             RolesAndPermissionsSeeder::class,
-            HorseBreedSeeder::class
+            HorseBreedSeeder::class,
+            CatBreedSeeder::class
         ]);
 
         $user = User::factory()->create([
