@@ -29,7 +29,7 @@ enum PetCategory: string
             self::Reptile => 'Ερπετό',
             self::Amphibian => 'Αμφίβιο',
             self::Horse => 'Άλογο',
-            self::Other => 'Άλλο',
+            self::Other => 'Άλλο'
         };
     }
 }
