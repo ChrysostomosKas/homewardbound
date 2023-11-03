@@ -14,16 +14,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            DogBreedSeeder::class,
-            RolesAndPermissionsSeeder::class,
-            HorseBreedSeeder::class,
-            CatBreedSeeder::class,
-            RabbitBreedSeeder::class,
-            FishBreedSeeder::class,
+            AmphibianBreedSeeder::class,
             BirdBreedSeeder::class,
+            CatBreedSeeder::class,
+            DogBreedSeeder::class,
+            FishBreedSeeder::class,
             HamsterBreedSeeder::class,
+            HorseBreedSeeder::class,
+            RabbitBreedSeeder::class,
             ReptileBreedSeeder::class,
-            AmphibianBreedSeeder::class
+            RolesAndPermissionsSeeder::class,
         ]);
 
         $user = User::factory()->create([

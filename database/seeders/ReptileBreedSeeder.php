@@ -14,18 +14,21 @@ class ReptileBreedSeeder extends Seeder
     public function run(): void
     {
         $reptileBreeds = [
-            'Leopard Gecko',
-            'Ball Python',
-            'Bearded Dragon',
-            'Corn Snake',
-            'Red-Eared Slider Turtle',
-            'Crested Gecko',
-            'Iguana',
-            'Russian Tortoise'
+            'Leopard Gecko' => ['Λεοπάρντο Γεκο', 'Leopard Gecko'],
+            'Ball Python' => ['Μπαλ Πάιθον', 'Ball Python'],
+            'Bearded Dragon' => ['Πρεσβυτέριος Δράκος', 'Bearded Dragon'],
+            'Corn Snake' => ['Στρόφιγγα', 'Corn Snake'],
+            'Red-Eared Slider Turtle' => ['Χελώνα Κόκκινου Αυτιού', 'Red-Eared Slider Turtle'],
+            'Crested Gecko' => ['Κρεστεντ Γεκο', 'Crested Gecko'],
+            'Iguana' => ['Ιγκουάνα', 'Iguana'],
+            'Russian Tortoise' => ['Ρωσική Χελώνα', 'Russian Tortoise']
         ];
 
         foreach ($reptileBreeds as $breed) {
-            ReptileBreed::create(['name' => $breed]);
+            ReptileBreed::create([
+                'name_gr' => $breed[0], // Greek name
+                'name_en' => $breed[1], // English name
+            ]);
         }
     }
 }

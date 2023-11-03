@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('hamster_breeds', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_gr');
+            $table->string('name_en');
             $table->timestamps();
         });
     }

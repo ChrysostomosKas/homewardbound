@@ -14,16 +14,19 @@ class HamsterBreedSeeder extends Seeder
     public function run(): void
     {
         $hamsterBreeds = [
-            'Syrian Hamster (Golden Hamster)',
-            'Dwarf Hamster',
-            'Roborovski Hamster',
-            'Chinese Hamster',
-            'Campbells Dwarf Hamster',
-            'Winter White Russian Dwarf Hamster',
+            'Syrian Hamster (Golden Hamster)' => ['Συριακό Χάμστερ (Χρυσό Χάμστερ)', 'Syrian Hamster (Golden Hamster)'],
+            'Dwarf Hamster' => ['Κοντόποδο Χάμστερ', 'Dwarf Hamster'],
+            'Roborovski Hamster' => ['Χάμστερ Ρομπορόφσκι', 'Roborovski Hamster'],
+            'Chinese Hamster' => ['Κινέζικο Χάμστερ', 'Chinese Hamster'],
+            'Campbells Dwarf Hamster' => ['Κοντόποδο Χάμστερ του Κάμπελ', 'Campbells Dwarf Hamster'],
+            'Winter White Russian Dwarf Hamster' => ['Χειμερινός Λευκός Ρωσικός Κοντόποδος Χάμστερ', 'Winter White Russian Dwarf Hamster'],
         ];
 
         foreach ($hamsterBreeds as $breed) {
-            HamsterBreed::create(['name' => $breed]);
+            HamsterBreed::create([
+                'name_gr' => $breed[0], // Greek name
+                'name_en' => $breed[1], // English name
+            ]);
         }
     }
 }
