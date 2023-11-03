@@ -4,8 +4,10 @@
 <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="heartbeat">{{ __('Adoption') }}</x-sidebar.item>
 <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="medical-cross">{{ __('Medical') }}</x-sidebar.item>
 <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="map-pin">{{ __('Pet Reports') }}</x-sidebar.item>
-<x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="presentation-analytics">{{ __('Analytics') }}</x-sidebar.item>
-<x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="device-analytics">{{ __('Statistics ') }}</x-sidebar.item>
+@if(Gate::allows('admin'))
+    <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="presentation-analytics">{{ __('Analytics') }}</x-sidebar.item>
+    <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="device-analytics">{{ __('Statistics ') }}</x-sidebar.item>
+@endif
 <div class="px-2 py-1">
     <x-button.logout/>
 </div>
