@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Chrysostomos',
             'last_name' => 'Kasapidis',
         ]);
+        $user->assignRole('admin');
     }
 }
