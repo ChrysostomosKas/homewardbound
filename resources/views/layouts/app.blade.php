@@ -16,6 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('header_scripts')
     @stack('scripts')
+    @livewireStyles
 </head>
 <body class="h-full overflow-hidden">
 <div class="h-full flex">
@@ -44,5 +45,6 @@
         </x-dash-container>
     </div>
 </div>
+@livewireScripts
 </body>
 </html>
