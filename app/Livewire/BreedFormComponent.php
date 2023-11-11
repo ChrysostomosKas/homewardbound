@@ -3,7 +3,15 @@
 namespace App\Livewire;
 
 use App\Enums\PetCategory;
+use App\Models\AmphibianBreed;
+use App\Models\BirdBreed;
+use App\Models\CatBreed;
 use App\Models\DogBreed;
+use App\Models\FishBreed;
+use App\Models\HamsterBreed;
+use App\Models\HorseBreed;
+use App\Models\RabbitBreed;
+use App\Models\ReptileBreed;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -17,11 +25,12 @@ class BreedFormComponent extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public ?array $data = [];
     public string $name_en = '';
     public string $name_gr = '';
     public string $breed_type = '';
     public string $message = '';
+    public string $slug = '';
+    public DogBreed|CatBreed|BirdBreed|FishBreed|RabbitBreed|HamsterBreed|ReptileBreed|AmphibianBreed|HorseBreed $breed;
 
     protected function rules()
     {
@@ -31,17 +40,26 @@ class BreedFormComponent extends Component implements HasForms
         ];
     }
 
-    public function mount(): void
+    public function mount($slug = null): void
     {
-        $this->form->fill([
-            'name_en' => $this->name_en,
-            'name_gr' => $this->name_gr,
-        ]);
-    }
+        if ($this->slug) {
+            $modelClass = 'App\\Models\\' . $this->breed_type.'Breed';
 
-    public function makeBlankApplicationForm()
-    {
-        return DogBreed::make(['created_at' => now()]);
+            $this->breed = $modelClass::query()
+                ->where('slug', $slug)
+                ->first();
+
+            $this->form->fill([
+                'name_en' => $this->breed->name_en,
+                'name_gr' => $this->breed->name_gr,
+                'breed_type' => class_basename($this->breed )
+            ]);
+        } else {
+            $this->form->fill([
+                'name_en' => $this->name_en,
+                'name_gr' => $this->name_gr,
+            ]);
+        }
     }
 
     protected function getFormSchema(): array
@@ -88,15 +106,17 @@ class BreedFormComponent extends Component implements HasForms
     {
         $this->validate();
 
-        $modelClass = 'App\\Models\\' . $this->breed_type;
-        $modelInstance = new $modelClass();
+        if (!isset($this->breed->id)) {
+            $modelClass = 'App\\Models\\' . $this->breed_type;
+            $this->breed = new $modelClass();
+        }
 
-        $modelInstance->name_en = $this->name_en;
-        $modelInstance->name_gr = $this->name_gr;
+        $this->breed->name_en = $this->name_en;
+        $this->breed->name_gr = $this->name_gr;
 
-        $modelInstance->save();
+        $this->breed->save();
 
-        if ($modelInstance->id) {
+        if ($this->breed->id) {
             $this->dispatch('notification', [
                 'success' => true,
                 'message' => __('Your changes have been successfully saved!'),

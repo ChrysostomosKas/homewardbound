@@ -12,7 +12,7 @@ class BreedController extends Controller
 //            abort('403', ""Access to this resource is forbidden.");
 //        }
 
-        return view('forms.breed-form-index');
+        return view('forms.breeds.create');
     }
 
     public function show($id)
@@ -20,8 +20,11 @@ class BreedController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Request $request, $slug)
     {
-        //
+        return view('forms.breeds.edit', [
+            'slug' => $slug,
+            'breed_type' => $request->get('breed_type')
+        ]);
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('horse_breeds', function (Blueprint $table) {
             $table->id();
-            $table->string('name_gr')->unique();
-            $table->string('name_en')->unique();
+            $table->string('name_gr');
+            $table->string('name_en');
             $table->string('slug')->unique();
             $table->timestamps();
         });

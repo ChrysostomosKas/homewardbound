@@ -87,7 +87,6 @@ class DogBreedSeeder extends Seeder
             'Cane Corso' => ['Κάνε Κορσό', 'Cane Corso'],
             'Portuguese Podengo' => ['Πορτογαλικός Ποδένγκο', 'Portuguese Podengo'],
             'Saluki' => ['Σαλούκι', 'Saluki'],
-            'Rhodesian Ridgeless' => ['Ροντέζιαν Ρίτζμπακ', 'Rhodesian Ridgeless'],
             'Japanese Chin' => ['Ιαπωνικό Τσιν', 'Japanese Chin'],
             'American Water Spaniel' => ['Αμερικανικός Σκύλος του Νερού', 'American Water Spaniel'],
             'Clumber Spaniel' => ['Κλάμπερ Σπάνιελ', 'Clumber Spaniel'],
