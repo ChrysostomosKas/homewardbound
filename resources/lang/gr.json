@@ -32,8 +32,12 @@
     "View all"      : "Προβολή όλων",
     "Based on"      : "Με βάση",
     "Notifications" : "Ειδοποιήσεις",
+    "Success" : "Επιτυχία",
+    "Failed" : "Αποτυχία",
 
     "Assigning User Roles": "Ανάθεση Ρόλων Χρήστη",
     "Assignment of Roles" : "Ανάθεση Ρόλων",
-    "No results found..." : "Δεν βρέθηκαν αποτελέσματα..."
+    "No results found..." : "Δεν βρέθηκαν αποτελέσματα...",
+    "Your changes have been successfully saved!" : "Οι αλλαγές σας αποθηκεύτηκαν με επιτυχία!",
+    "Something went wrong!" : "Κάτι πήγε στραβά!"
 }

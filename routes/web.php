@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BreedController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\BreedFormComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Breed Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('breeds', BreedController::class);
+    Route::get('/breed/form/', BreedFormComponent::class)
+        ->name('breed-form-index');
 });
