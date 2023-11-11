@@ -11,7 +11,7 @@ class DogBreed extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'dog_breeds';
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en, name_gr'];
 
     /**
      * Return the sluggable configuration array for this model.

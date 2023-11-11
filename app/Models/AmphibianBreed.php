@@ -11,7 +11,7 @@ class AmphibianBreed extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'amphibian_breeds';
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en, name_gr'];
 
     /**
      * Return the sluggable configuration array for this model.

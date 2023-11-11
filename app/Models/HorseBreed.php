@@ -11,7 +11,7 @@ class HorseBreed extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'horse_breeds';
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en, name_gr'];
 
     /**
      * Return the sluggable configuration array for this model.
