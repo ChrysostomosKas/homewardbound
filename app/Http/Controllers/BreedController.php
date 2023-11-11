@@ -13,6 +13,15 @@ class BreedController extends Controller
             abort('403', "Access to this resource is forbidden.");
         }
 
+        return view('forms.breeds.index');
+    }
+
+    public function create()
+    {
+        if (Gate::denies('administrate')) {
+            abort('403', "Δεν έχετε πρόσβαση");
+        }
+
         return view('forms.breeds.create');
     }
 

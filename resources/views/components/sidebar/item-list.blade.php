@@ -7,7 +7,8 @@
 @if(Gate::allows('admin'))
     <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="presentation-analytics">{{ __('Analytics') }}</x-sidebar.item>
     <x-sidebar.item href="#" :active="request()->routeIs('#.*')" icon="device-analytics">{{ __('Statistics ') }}</x-sidebar.item>
-    <x-sidebar.item href="{{route('breeds.edit', ['breed' => 'labrador-retriever', 'breed_type' => 'Dog']) }}" :active="request()->routeIs('breeds.*')" icon="file-plus">{{ __('Breed Form') }}</x-sidebar.item>
+    <x-sidebar.item href="{{route('breeds.index') }}" :active="request()->routeIs('breeds.*')" icon="list-tree">{{ __('Breeds') }}</x-sidebar.item>
+{{--    <x-sidebar.item href="{{route('breeds.edit', ['breed' => 'labrador-retriever', 'breed_type' => 'Dog']) }}" :active="request()->routeIs('breeds.*')" icon="file-plus">{{ __('Breed Form') }}</x-sidebar.item>--}}
 @endif
 <div class="px-2 py-1">
     <x-button.logout/>
