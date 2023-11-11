@@ -10,7 +10,6 @@ enum PetCategory: string
     case Fish = 'Fish';
     case Rabbit = 'Rabbit';
     case Hamster = 'Hamster';
-    case GuineaPig = 'Guinea Pig';
     case Reptile = 'Reptile';
     case Amphibian = 'Amphibian';
     case Horse = 'Horse';
@@ -25,7 +24,6 @@ enum PetCategory: string
             self::Fish => 'Ψάρι',
             self::Rabbit => 'Κουνέλι',
             self::Hamster => 'Χάμστερ',
-            self::GuineaPig => 'Ινδικό χοιρίδιο',
             self::Reptile => 'Ερπετό',
             self::Amphibian => 'Αμφίβιο',
             self::Horse => 'Άλογο',
