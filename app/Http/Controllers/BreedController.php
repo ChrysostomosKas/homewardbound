@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BreedController extends Controller
 {
     public function index()
     {
-//        if (Gate::denies('admin')) {
-//            abort('403', ""Access to this resource is forbidden.");
-//        }
+        if (Gate::denies('admin')) {
+            abort('403', "Access to this resource is forbidden.");
+        }
 
         return view('forms.breeds.create');
     }
@@ -22,6 +23,9 @@ class BreedController extends Controller
 
     public function edit(Request $request, $slug)
     {
+        if (Gate::denies('admin')) {
+            abort('403', "Access to this resource is forbidden.");
+        }
         return view('forms.breeds.edit', [
             'slug' => $slug,
             'breed_type' => $request->get('breed_type')
