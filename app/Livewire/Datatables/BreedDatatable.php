@@ -43,8 +43,8 @@ class BreedDatatable extends Component implements HasForms, HasTable
         return $table
             ->query($modelClass::query())
             ->columns([
-                TextColumn::make('name_gr')->searchable(),
-                TextColumn::make('name_en')->searchable(),
+                TextColumn::make('name_gr')->searchable()->sortable(),
+                TextColumn::make('name_en')->searchable()->sortable(),
             ])->filters([
                 Filter::make('created_at')
                     ->form([

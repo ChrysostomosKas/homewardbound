@@ -31,11 +31,11 @@ class UserDatatable extends Component implements HasForms, HasTable
         return $table
             ->query(User::query())
             ->columns([
-                TextColumn::make('first_name')->searchable(),
-                TextColumn::make('last_name')->searchable(),
-                TextColumn::make('email')->searchable(),
-                TextColumn::make('city'),
-                TextColumn::make('phone'),
+                TextColumn::make('first_name')->searchable()->sortable(),
+                TextColumn::make('last_name')->searchable()->sortable(),
+                TextColumn::make('email')->searchable()->sortable(),
+                TextColumn::make('city')->sortable(),
+                TextColumn::make('phone')->sortable(),
             ])->filters([
                 Filter::make('created_at')
                     ->form([
