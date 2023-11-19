@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Livewire\BreedFormComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('breeds', BreedController::class);
     Route::get('/breed/form/{slug?}/{breed_type?}', BreedFormComponent::class)
         ->name('breed-form-index');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Users Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('users', UserController::class);
 });

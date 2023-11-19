@@ -26,11 +26,14 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
         ]);
 
+        User::factory(10)->create();
+
         $user = User::factory()->create([
             'email' => 'test@test.com',
             'first_name' => 'Chrysostomos',
             'last_name' => 'Kasapidis',
         ]);
+
         $user->assignRole('admin');
     }
 }
