@@ -1,5 +1,7 @@
 <x-app-layout title=''>
 
-{{--    @livewire('datatables.breedDatatable')--}}
+        @if(Gate::allows('admin'))
+        <livewire:datatables.selection-breed-component />
+        @endif
 
 </x-app-layout>

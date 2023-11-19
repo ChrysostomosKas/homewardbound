@@ -2,19 +2,33 @@
 
 namespace App\Enums;
 
-enum PetCategory: string
+enum PetCategory
 {
-    case Dog = 'Dog';
-    case Cat = 'Cat';
-    case Bird = 'Bird';
-    case Fish = 'Fish';
-    case Rabbit = 'Rabbit';
-    case Hamster = 'Hamster';
-    case Reptile = 'Reptile';
-    case Amphibian = 'Amphibian';
-    case Horse = 'Horse';
-    case Other = 'Other';
-
+    case Dog;
+    case Cat;
+    case Bird;
+    case Fish;
+    case Rabbit;
+    case Hamster;
+    case Reptile;
+    case Amphibian;
+    case Horse;
+    case Other;
+    public static function all(): array
+    {
+        return [
+            self::Dog,
+            self::Cat,
+            self::Bird,
+            self::Fish,
+            self::Rabbit,
+            self::Hamster,
+            self::Reptile,
+            self::Amphibian,
+            self::Horse,
+            self::Other,
+        ];
+    }
     public function name(): string
     {
         return match ($this) {
@@ -28,6 +42,22 @@ enum PetCategory: string
             self::Amphibian => 'Αμφίβιο',
             self::Horse => 'Άλογο',
             self::Other => 'Άλλο'
+        };
+    }
+
+    public function icon(): string
+    {
+        return match ($this) {
+            self::Dog => 'dog',
+            self::Cat => 'cat',
+            self::Bird => 'feather',
+            self::Fish => 'fish',
+            self::Rabbit => 'carrot',
+            self::Hamster => 'fish',
+            self::Reptile => 'fish',
+            self::Amphibian => 'fish',
+            self::Horse => 'horse-toy',
+            self::Other => 'bookmark-question'
         };
     }
 }

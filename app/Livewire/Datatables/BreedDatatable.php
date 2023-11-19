@@ -2,7 +2,15 @@
 
 namespace App\Livewire\Datatables;
 
+use App\Models\AmphibianBreed;
+use App\Models\BirdBreed;
+use App\Models\CatBreed;
 use App\Models\DogBreed;
+use App\Models\FishBreed;
+use App\Models\HamsterBreed;
+use App\Models\HorseBreed;
+use App\Models\RabbitBreed;
+use App\Models\ReptileBreed;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -17,21 +25,23 @@ use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
-use Filament\Notifications\Notification;
 
 class BreedDatatable extends Component implements HasForms, HasTable
 {
     use InteractsWithTable;
     use InteractsWithForms;
 
+    public string $breed_type = '';
+
     /**
      * @throws \Exception
      */
     public function table(Table $table): Table
     {
+        $modelClass = 'App\\Models\\' . $this->breed_type . 'Breed';
+
         return $table
-            ->query(DogBreed::query())
+            ->query($modelClass::query())
             ->columns([
                 TextColumn::make('name_gr')->searchable(),
                 TextColumn::make('name_en')->searchable(),
@@ -54,14 +64,6 @@ class BreedDatatable extends Component implements HasForms, HasTable
                     }),
             ])->actions([
                 ActionGroup::make([
-                    ViewAction::make()->form([
-                        TextInput::make('name_en')
-                            ->required()
-                            ->maxLength(255),
-                        TextInput::make('name_gr')
-                            ->required()
-                            ->maxLength(255),
-                    ]),
                     EditAction::make()
                         ->form([
                             TextInput::make('name_en')
@@ -71,12 +73,18 @@ class BreedDatatable extends Component implements HasForms, HasTable
                                 ->required()
                                 ->maxLength(255),
                         ])
-                        ->successNotification(
-                            Notification::make()
-                                ->success()
-                                ->title('Breed updated')
-                                ->body('The breed has been saved successfully.'),
-                        ),
+                        ->using(function (DogBreed|CatBreed|BirdBreed|FishBreed|RabbitBreed|HamsterBreed|ReptileBreed|AmphibianBreed|HorseBreed $record, array $data): DogBreed|CatBreed|BirdBreed|FishBreed|RabbitBreed|HamsterBreed|ReptileBreed|AmphibianBreed|HorseBreed {
+                            $record->update($data);
+
+                            return $record;
+                        })
+                        ->after(function () {
+                            $this->dispatch('notification', [
+                                'success' => true,
+                                'message' => __('Your changes have been successfully saved!'),
+                                'delay' => 5000
+                            ]);
+                        }),
                     DeleteAction::make(),
                 ])->tooltip('Actions')
             ]);
