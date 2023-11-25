@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdoptionAd;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdoptionAdController extends Controller
 {
@@ -11,7 +13,11 @@ class AdoptionAdController extends Controller
      */
     public function index()
     {
-        //
+        if (Gate::denies('admin')) {
+            abort('403', "Access to this resource is forbidden.");
+        }
+
+        return view('adoption-ads.index');
     }
 
     /**
@@ -19,7 +25,7 @@ class AdoptionAdController extends Controller
      */
     public function create()
     {
-        //
+        return view('adoption-ads.create');
     }
 
     /**
@@ -33,8 +39,14 @@ class AdoptionAdController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AdoptionAd $adoptionAd)
+    public function edit(Request $request, $ad_id)
     {
-        //
+        if (Gate::denies('admin')) {
+            abort('403', "Access to this resource is forbidden.");
+        }
+
+        return view('adoption-ads.edit', [
+            'ad_id' => $ad_id
+        ]);
     }
 }

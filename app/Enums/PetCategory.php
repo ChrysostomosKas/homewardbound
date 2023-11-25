@@ -60,4 +60,15 @@ enum PetCategory
             self::Other => 'bookmark-question'
         };
     }
+
+    public static function fromCase(string $case): ?PetCategory
+    {
+        foreach (self::all() as $petType) {
+            if ($petType->name == $case) {
+                return $petType;
+            }
+        }
+
+        return null;
+    }
 }
