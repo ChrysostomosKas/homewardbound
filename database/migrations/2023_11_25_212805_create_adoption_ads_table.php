@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AdoptionAdStatus;
+use App\Enums\PetCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             /** ENUM */
-            $table->string('type_of_pet');
+            $table->string('type_of_pet')->default(PetCategory::Dog->name);
             $table->string('status')->default(AdoptionAdStatus::Open->name);
             /** ENUM */
             $table->string('breed')->nullable();

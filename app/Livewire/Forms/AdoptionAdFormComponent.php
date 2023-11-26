@@ -247,6 +247,8 @@ class AdoptionAdFormComponent extends Component implements HasForms
             'status' => AdoptionAdStatus::Open->name,
         ]);
 
+        $this->adoptionAd->save();
+
         if ($this->adoptionAd->id) {
             $this->dispatch('notification', [
                 'success' => true,
