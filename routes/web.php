@@ -38,9 +38,6 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('breeds', BreedController::class);
-    Route::get('/breed/form/{slug?}/{breed_type?}', BreedFormComponent::class)
-        ->name('breed-form-index');
-
     /*
     |--------------------------------------------------------------------------
     | Users Routes
