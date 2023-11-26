@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\AdoptionAdStatus;
 use App\Enums\PetCategory;
 use App\Models\AdoptionAd;
 use Filament\Forms\Components\Checkbox;
@@ -243,6 +244,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
             'contact_phone_number' => $this->contact_phone_number,
             'type_of_pet' => PetCategory::fromCase($this->type_of_pet),
             'contact_email' => $this->contact_email,
+            'status' => AdoptionAdStatus::Open->name,
         ]);
 
         if ($this->adoptionAd->id) {

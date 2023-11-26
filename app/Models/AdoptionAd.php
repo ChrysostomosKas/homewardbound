@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AdoptionAdStatus;
 use App\Enums\PetCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,7 @@ class AdoptionAd extends Model
     ];
 
     protected $casts = [
-        'type_of_pet' => PetCategory::class
+        'type_of_pet' => PetCategory::class,
+        'status' => AdoptionAdStatus::class
     ];
 }
