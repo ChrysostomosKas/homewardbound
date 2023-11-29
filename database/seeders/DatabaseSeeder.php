@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AdoptionAd;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+        AdoptionAd::factory(10)->create();
 
         $user = User::factory()->create([
             'email' => 'test@test.com',
