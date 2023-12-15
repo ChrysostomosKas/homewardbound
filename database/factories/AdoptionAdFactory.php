@@ -25,6 +25,7 @@ class AdoptionAdFactory extends Factory
             'status' => AdoptionAdStatus::Open->name,
             'breed' => $this->faker->word,
             'age' => $this->faker->numberBetween(1, 10),
+            'pet_age_unit' => $this->faker->randomElement(['months', 'years']),
             'size' => $this->faker->randomElement(['Small', 'Medium', 'Large']),
             'color' => $this->faker->colorName,
             'gender' => $this->faker->randomElement(['Male', 'Female']),

@@ -23,6 +23,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
     public string $title = '';
     public string $description = '';
     public int $age = 0;
+    public string $pet_age_unit = '';
     public string $size = '';
     public string $color = '';
     public string $gender = '';
@@ -75,6 +76,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'type_of_pet' => '',
                 'contact_email' => '',
                 'base_image' => '',
+                'pet_age_unit' => ''
             ]);
 
             $this->adoptionAd = $this->makeBlankAdoptionAdForm();
@@ -98,6 +100,23 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 ->label('Title')
                                 ->columnSpan(1)
                                 ->required(),
+                            Select::make('type_of_pet')
+                                ->label('Type of pet')
+                                ->options([
+                                    'Dog' => 'Dog',
+                                    'Cat' => 'Cat',
+                                    'Bird' => 'Bird',
+                                    'Fish' => 'Fish',
+                                    'Rabbit' => 'Rabbit',
+                                    'Hamster' => 'Hamster',
+                                    'Reptile' => 'Reptile',
+                                    'Amphibian' => 'Amphibian',
+                                    'Horse' => 'Horse'
+                                ])
+                                ->required()
+                        ]),
+                    Grid::make(2)
+                        ->schema([
                             Select::make('breed')
                                 ->label('Breed')
                                 ->options([
@@ -111,7 +130,14 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                     'AmphibianBreed' => 'Amphibian',
                                     'HorseBreed' => 'Horse'
                                 ])
-                                ->required()
+                                ->required(),
+                            Select::make('gender')
+                                ->label('Gender')
+                                ->options([
+                                    'male' => 'Male',
+                                    'Female' => 'female'
+                                ])
+                                ->required(),
                         ]),
                     Grid::make(2)
                         ->schema([
@@ -122,18 +148,25 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 ->minValue(0)
                                 ->maxValue(40)
                                 ->nullable(),
-                            TextInput::make('size')
-                                ->label('Size')
+                            Select::make('pet_age_unit')
+                                ->label('Pet Age Unit')
                                 ->columnSpan(1)
-                                ->required()
+                                ->options([
+                                    'Months' => 'Months',
+                                    'Years' => 'Years'
+                                ])
+                                ->required(),
                         ]),
                     Grid::make(2)
                         ->schema([
-                            Select::make('gender')
-                                ->label('Gender')
+                            Select::make('size')
+                                ->label('Size')
+                                ->columnSpan(1)
                                 ->options([
-                                    'male' => 'Male',
-                                    'Female' => 'female'
+                                    'Small' => 'Small',
+                                    'Medium' => 'Medium',
+                                    'Large' => 'Large',
+                                    'extra_large' => 'Extra Large'
                                 ])
                                 ->required(),
                             TextInput::make('color')
@@ -162,23 +195,6 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 ->label('Contact email')
                                 ->columnSpan(1)
                                 ->email()
-                                ->required()
-                        ]),
-                    Grid::make(1)
-                        ->schema([
-                            Select::make('type_of_pet')
-                                ->label('Type of pet')
-                                ->options([
-                                    'Dog' => 'Dog',
-                                    'Cat' => 'Cat',
-                                    'Bird' => 'Bird',
-                                    'Fish' => 'Fish',
-                                    'Rabbit' => 'Rabbit',
-                                    'Hamster' => 'Hamster',
-                                    'Reptile' => 'Reptile',
-                                    'Amphibian' => 'Amphibian',
-                                    'Horse' => 'Horse'
-                                ])
                                 ->required()
                         ]),
                     Grid::make(1)

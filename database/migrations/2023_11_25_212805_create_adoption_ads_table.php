@@ -23,6 +23,7 @@ return new class extends Migration
             /** ENUM */
             $table->string('breed')->nullable();
             $table->integer('age')->nullable();
+            $table->string('pet_age_unit')->nullable();
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('gender')->nullable();
