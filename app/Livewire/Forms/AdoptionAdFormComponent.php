@@ -35,34 +35,11 @@ class AdoptionAdFormComponent extends Component implements HasForms
     public string $location = '';
     public string $contact_phone_number = '';
     public string $contact_email = '';
-    public string $ad_id = '';
-
-    protected function rules(): array
-    {
-        return [
-            'title'                    => 'required | string | max:255',
-            'description'              => 'required | string | max:255',
-            'age'                      => 'nullable | integer | max:255',
-            'size'                     => 'nullable | string | max:255',
-            'color'                    => 'nullable | string | max:255',
-            'gender'                   => 'required | string | max:255',
-            'breed'                    => 'required | string | max:255',
-            'vaccination_status'       => 'required',
-            'spaying_neutering_status' => 'required',
-            'health_condition'         => 'required | string | max:255',
-            'location'                 => 'required | string | max:255',
-            'contact_phone_number'     => 'required | string | max:255',
-            'type_of_pet'              => 'required',
-            'contact_email'            => 'required | string | max:255'
-        ];
-    }
 
     public function mount($ad_id = null): void
     {
-        if ($this->ad_id) {
-            $this->adoptionAd = AdoptionAd::query()
-                ->where('id', '=', $ad_id)
-                ->first();
+        if ($ad_id) {
+            $this->adoptionAd = AdoptionAd::find($ad_id);
 
             $this->form->fill([
                 'title' => $this->adoptionAd->title,
@@ -82,22 +59,30 @@ class AdoptionAdFormComponent extends Component implements HasForms
             ]);
         } else {
             $this->form->fill([
-                'title' => $this->title,
-                'description' => $this->description,
-                'age' => $this->age,
-                'size' => $this->size,
-                'color' => $this->color,
-                'gender' => $this->gender,
-                'breed' => $this->breed,
-                'vaccination_status' => $this->vaccination_status,
-                'spaying_neutering_status' => $this->spaying_neutering_status,
-                'health_condition' => $this->health_condition,
-                'location' => $this->location,
-                'contact_phone_number' => $this->contact_phone_number,
-                'type_of_pet' => $this->type_of_pet,
-                'contact_email' => $this->contact_email,
+                'title' => '',
+                'description' => '',
+                'age' => null,
+                'size' => '',
+                'color' => '',
+                'gender' => '',
+                'breed' => '',
+                'vaccination_status' => false,
+                'spaying_neutering_status' => false,
+                'health_condition' => '',
+                'location' => '',
+                'contact_phone_number' => '',
+                'type_of_pet' => '',
+                'contact_email' => '',
             ]);
+
+            $this->adoptionAd = $this->makeBlankAdoptionAdForm();
         }
+    }
+
+
+    public function makeBlankAdoptionAdForm()
+    {
+        return AdoptionAd::make(['created_at' => now()]);
     }
 
     protected function getFormSchema(): array
@@ -221,10 +206,6 @@ class AdoptionAdFormComponent extends Component implements HasForms
      */
     public function saveAdoptionAd()
     {
-        $this->validate();
-        $allPetTypes = PetCategory::all();
-        $randomPetType = $allPetTypes[array_rand($allPetTypes)];
-
         if (!isset($this->adoptionAd->id)) {
             $this->adoptionAd = new AdoptionAd();
         }
