@@ -2,10 +2,9 @@
 
 namespace App\Livewire\Forms;
 
-use App\Enums\AdoptionAdStatus;
-use App\Enums\PetCategory;
 use App\Models\AdoptionAd;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -35,6 +34,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
     public string $location = '';
     public string $contact_phone_number = '';
     public string $contact_email = '';
+    public $base_image = '';
 
     public function mount($ad_id = null): void
     {
@@ -56,12 +56,13 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'contact_phone_number' => $this->adoptionAd->contact_phone_number,
                 'type_of_pet' => $this->adoptionAd->type_of_pet->name,
                 'contact_email' => $this->adoptionAd->contact_email,
+                'base_image' => $this->adoptionAd->base_image,
             ]);
         } else {
             $this->form->fill([
                 'title' => '',
                 'description' => '',
-                'age' => null,
+                'age' => 0,
                 'size' => '',
                 'color' => '',
                 'gender' => '',
@@ -73,6 +74,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'contact_phone_number' => '',
                 'type_of_pet' => '',
                 'contact_email' => '',
+                'base_image' => '',
             ]);
 
             $this->adoptionAd = $this->makeBlankAdoptionAdForm();
@@ -188,6 +190,14 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 ->cols(10)
                                 ->required()
                         ]),
+                    Grid::make(1)
+                        ->schema([
+                            FileUpload::make('base_image')
+                                ->label('Image')
+                                ->image()
+                                ->columnSpan(1)
+                                ->nullable(),
+                        ]),
                     Grid::make(2)
                         ->schema([
                             Checkbox::make('vaccination_status')
@@ -206,31 +216,12 @@ class AdoptionAdFormComponent extends Component implements HasForms
      */
     public function saveAdoptionAd()
     {
-        if (!isset($this->adoptionAd->id)) {
-            $this->adoptionAd = new AdoptionAd();
-        }
+        $new_adoptionAd = AdoptionAd::updateOrCreate(
+            ['id' => $this->adoptionAd->id],
+            $this->form->getState()
+        );
 
-        $this->adoptionAd->fill([
-            'title' => $this->title,
-            'description' => $this->description,
-            'age' => $this->age,
-            'size' => $this->size,
-            'color' => $this->color,
-            'gender' => $this->gender,
-            'breed' => $this->breed,
-            'vaccination_status' => $this->vaccination_status,
-            'spaying_neutering_status' => $this->spaying_neutering_status,
-            'health_condition' => $this->health_condition,
-            'location' => $this->location,
-            'contact_phone_number' => $this->contact_phone_number,
-            'type_of_pet' => PetCategory::fromCase($this->type_of_pet),
-            'contact_email' => $this->contact_email,
-            'status' => AdoptionAdStatus::Open->name,
-        ]);
-
-        $this->adoptionAd->save();
-
-        if ($this->adoptionAd->id) {
+        if ($new_adoptionAd->id) {
             $this->dispatch('notification', [
                 'success' => true,
                 'message' => __('Your changes have been successfully saved!'),

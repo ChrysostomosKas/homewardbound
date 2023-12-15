@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('contact_phone_number');
             $table->string('contact_email');
-            $table->json('images')->nullable();
+            $table->text('base_image')->nullable();
             $table->timestamps();
         });
     }

@@ -34,7 +34,6 @@ class AdoptionAdFactory extends Factory
             'location' => $this->faker->city,
             'contact_phone_number' => $this->faker->phoneNumber,
             'contact_email' => $this->faker->email,
-            'images' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ];
