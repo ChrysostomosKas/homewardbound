@@ -3,6 +3,15 @@
 namespace App\Livewire\Forms;
 
 use App\Models\AdoptionAd;
+use App\Models\AmphibianBreed;
+use App\Models\BirdBreed;
+use App\Models\CatBreed;
+use App\Models\DogBreed;
+use App\Models\FishBreed;
+use App\Models\HamsterBreed;
+use App\Models\HorseBreed;
+use App\Models\RabbitBreed;
+use App\Models\ReptileBreed;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -12,6 +21,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Get;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -114,22 +125,26 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                     'Horse' => 'Horse'
                                 ])
                                 ->required()
+                                ->preload()
+                                ->live()
                         ]),
                     Grid::make(2)
                         ->schema([
                             Select::make('breed')
                                 ->label('Breed')
-                                ->options([
-                                    'DogBreed' => 'Dog',
-                                    'CatBreed' => 'Cat',
-                                    'BirdBreed' => 'Bird',
-                                    'FishBreed' => 'Fish',
-                                    'RabbitBreed' => 'Rabbit',
-                                    'HamsterBreed' => 'Hamster',
-                                    'ReptileBreed' => 'Reptile',
-                                    'AmphibianBreed' => 'Amphibian',
-                                    'HorseBreed' => 'Horse'
-                                ])
+                                ->options(fn(Get $get): Collection =>
+                                match ($get('type_of_pet')) {
+                                    'Dog' => DogBreed::pluck('name_en'),
+                                    'Cat' => CatBreed::pluck('name_en'),
+                                    'Bird' => BirdBreed::pluck('name_en'),
+                                    'Fish' => FishBreed::pluck('name_en'),
+                                    'Rabbit' => RabbitBreed::pluck('name_en'),
+                                    'Hamster' => HamsterBreed::pluck('name_en'),
+                                    'Reptile' => ReptileBreed::pluck('name_en'),
+                                    'Amphibian' => AmphibianBreed::pluck('name_en'),
+                                    'Horse' => HorseBreed::pluck('name_en'),
+                                    default => collect([]),
+                                })
                                 ->required(),
                             Select::make('gender')
                                 ->label('Gender')
