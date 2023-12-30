@@ -6,6 +6,7 @@ use App\Enums\AdoptionAdStatus;
 use App\Enums\PetCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class AdoptionAd extends Model
 {
@@ -35,4 +36,12 @@ class AdoptionAd extends Model
         'status' => AdoptionAdStatus::class,
         'base_image' => 'array'
     ];
+
+    /*
+     *
+     */
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }
