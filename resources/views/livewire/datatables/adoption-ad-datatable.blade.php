@@ -4,24 +4,20 @@
                 <div class="mx-auto mt-12 grid gap-5 lg:max-w-none lg:grid-cols-3 p-4">
                     @foreach($adoptionAds as $ad)
                         <div
-                            class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[500px] transform hover:scale-105 transition-all ease-in-out duration-300">
+                            class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[550px] transform hover:scale-105 transition-all ease-in-out duration-300">
                             <img class="rounded-t-lg"
                                  src="https://picsum.photos/800/600/?category=animals"
                                  alt=""/>
                             <div class="py-6 px-8 rounded-lg bg-white">
                                 <a href="{{ route('adoption-ads.show', $ad->id) }}">
-                                    <h1 class="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900">
-                                        I'm dog
-                                        for you.</h1>
+                                    <h1 class="text-gray-700 font-bold text-xl mb-3 hover:text-gray-900 line-clamp-2 max-w-[200px]">{{ $ad->title }}</h1>
                                 </a>
-                                <p class="text-gray-700 tracking-wide line-clamp-4">Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit.
-                                    Eum, labore. Ea debitis beatae sequi deleniti.</p>
+                                <p class="text-gray-700 tracking-wide line-clamp-4">{{ $ad->description }}</p>
                                 <div class="flex justify-between">
-                                    <button
-                                        class="mt-6 py-2 px-4 bg-yellow-400 text-gray-800 font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-yellow-500 transition duration-300">
+                                    <a href="{{ route('adoption-ads.show', $ad->id) }}"
+                                        class="mt-6 py-2 px-4 bg-gray-900 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-gray-700">
                                         Show
-                                    </button>
+                                    </a>
                                     <div class="flex items-center mt-6 gap-2 hover:cursor-pointer"
                                          wire:click="toggleLike({{ $ad->id }})">
                                         <x-tabler-heart
