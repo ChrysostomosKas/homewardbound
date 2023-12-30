@@ -134,15 +134,15 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 ->label('Breed')
                                 ->options(fn(Get $get): Collection =>
                                 match ($get('type_of_pet')) {
-                                    'Dog' => DogBreed::pluck('name_en'),
-                                    'Cat' => CatBreed::pluck('name_en'),
-                                    'Bird' => BirdBreed::pluck('name_en'),
-                                    'Fish' => FishBreed::pluck('name_en'),
-                                    'Rabbit' => RabbitBreed::pluck('name_en'),
-                                    'Hamster' => HamsterBreed::pluck('name_en'),
-                                    'Reptile' => ReptileBreed::pluck('name_en'),
-                                    'Amphibian' => AmphibianBreed::pluck('name_en'),
-                                    'Horse' => HorseBreed::pluck('name_en'),
+                                    'Dog' => DogBreed::pluck('name_en', 'name_en'),
+                                    'Cat' => CatBreed::pluck('name_en', 'name_en'),
+                                    'Bird' => BirdBreed::pluck('name_en', 'name_en'),
+                                    'Fish' => FishBreed::pluck('name_en', 'name_en'),
+                                    'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
+                                    'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
+                                    'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
+                                    'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
+                                    'Horse' => HorseBreed::pluck('name_en', 'name_en'),
                                     default => collect([]),
                                 })
                                 ->required(),

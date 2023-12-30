@@ -4,9 +4,9 @@
             <div class="mx-auto mt-12 grid gap-5 lg:max-w-none lg:grid-cols-3 p-4">
                 @foreach($adoptionAds as $ad)
                     <div
-                        class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[500px] transform hover:scale-105 transition-all ease-in-out duration-300 hover:cursor-pointer">
+                        class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[500px] transform hover:scale-105 transition-all ease-in-out duration-300">
                         <img class="rounded-t-lg"
-                             src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80"
+                             src="https://picsum.photos/800/600/?category=animals"
                              alt=""/>
                         <div class="py-6 px-8 rounded-lg bg-white">
                             <h1 class="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900 hover:cursor-pointer">
@@ -17,10 +17,10 @@
                                 Eum, labore. Ea debitis beatae sequi deleniti.</p>
                             <div class="flex justify-between">
                                 <button
-                                    class="mt-6 py-2 px-4 bg-yellow-400 text-gray-800 font-bold rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                                    class="mt-6 py-2 px-4 bg-yellow-400 text-gray-800 font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-yellow-500 transition duration-300">
                                     Show
                                 </button>
-                                <div class="flex items-center mt-6 gap-2">
+                                <div class="flex items-center mt-6 gap-2 hover:cursor-pointer">
                                     <x-tabler-heart
                                         class="w-8 h-8 text-gray-300 hover:fill-neutral-400 hover:text-gray-400"/>
                                     <span>2.089 likes</span>
