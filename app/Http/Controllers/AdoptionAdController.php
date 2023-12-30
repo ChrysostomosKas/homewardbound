@@ -33,7 +33,9 @@ class AdoptionAdController extends Controller
      */
     public function show(AdoptionAd $adoptionAd)
     {
-        //
+        return view('adoption-ads.show', [
+            'adoptionAd' => $adoptionAd
+        ]);
     }
 
     /**

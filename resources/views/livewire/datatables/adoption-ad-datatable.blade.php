@@ -9,9 +9,11 @@
                                  src="https://picsum.photos/800/600/?category=animals"
                                  alt=""/>
                             <div class="py-6 px-8 rounded-lg bg-white">
-                                <h1 class="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900 hover:cursor-pointer">
-                                    I'm dog
-                                    for you.</h1>
+                                <a href="{{ route('adoption-ads.show', $ad->id) }}">
+                                    <h1 class="text-gray-700 font-bold text-2xl mb-3 hover:text-gray-900">
+                                        I'm dog
+                                        for you.</h1>
+                                </a>
                                 <p class="text-gray-700 tracking-wide line-clamp-4">Lorem ipsum dolor sit amet consectetur,
                                     adipisicing elit.
                                     Eum, labore. Ea debitis beatae sequi deleniti.</p>
