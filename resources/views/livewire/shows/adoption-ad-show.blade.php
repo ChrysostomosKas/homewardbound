@@ -5,7 +5,7 @@
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                         <div class="relative">
-                            <img alt="..." src="https://picsum.photos/800/600/?category=animals"
+                            <img alt="" src="{{ asset('storage/'.$adoptionAd->base_image) }}"
                                  class="shadow-xl rounded h-auto align-middle border-none">
                         </div>
                     </div>
@@ -49,11 +49,20 @@
                             <p class="mb-4 text-lg leading-relaxed text-gray-700">
                                 {{ $adoptionAd->description }}
                             </p>
-                            <a href="#" class="font-normal text-pink-500">Begin Your Adoption Journey</a>
+                            @if($this->interested)
+                                <span class="font-normal text-pink-500">We'll be in touch with you. Thank you!</span>
+                            @else
+                                <a wire:click="toggleShowForm()" class="font-normal text-pink-500 hover:cursor-pointer">Begin
+                                    Your Adoption Journey</a>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    @if($this->showForm)
+        <livewire:adoption-interest-form :ad_id='$adoptionAd->id'/>
+    @endif
 </div>

@@ -7,6 +7,7 @@ use App\Enums\PetCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AdoptionAd extends Model
 {
@@ -43,5 +44,13 @@ class AdoptionAd extends Model
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    /*
+     *
+     */
+    public function adoptionInterests() :HasMany
+    {
+        return $this->hasMany(AdoptionInterest::class);
     }
 }

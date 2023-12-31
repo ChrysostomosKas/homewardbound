@@ -2,12 +2,29 @@
 
 namespace App\Livewire\Shows;
 
+use App\Enums\AdoptionAdStatus;
 use App\Models\AdoptionAd;
+use App\Models\AdoptionInterest;
 use Livewire\Component;
 
 class AdoptionAdShow extends Component
 {
     public AdoptionAd $adoptionAd;
+    public bool $showForm = false;
+    public bool $interested = false;
+
+    public function mount()
+    {
+        $this->interested = AdoptionInterest::query()
+                                                ->where('user_id', '=', auth()->id())
+                                                ->where('status', '=', AdoptionAdStatus::Open->name)
+                                                ->exists();
+    }
+
+    public function toggleShowForm()
+    {
+        $this->showForm = true;
+    }
 
     public function render()
     {
