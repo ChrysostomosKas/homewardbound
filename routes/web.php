@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdoptionAdController;
+use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -51,4 +52,11 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('adoption-ads', AdoptionAdController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | AdoptionInterests Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('adoption-interests', AdoptionInterestController::class);
 });
