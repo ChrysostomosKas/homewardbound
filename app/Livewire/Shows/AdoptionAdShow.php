@@ -17,6 +17,7 @@ class AdoptionAdShow extends Component
     {
         $this->interested = AdoptionInterest::query()
                                                 ->where('user_id', '=', auth()->id())
+                                                ->where('adoption_ad_id', '=', $this->adoptionAd->id)
                                                 ->where('status', '=', AdoptionAdStatus::Open->name)
                                                 ->exists();
     }
