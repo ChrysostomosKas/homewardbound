@@ -3,10 +3,10 @@
 namespace App\Livewire\Datatables;
 
 use App\Enums\AdoptionAdStatus;
+use App\Jobs\SendAdoptionInterestStatusChangeEmailJob;
 use App\Models\AdoptionInterest;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\ActionGroup;
@@ -71,7 +71,9 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                         ])
                         ->using(function (AdoptionInterest $record, array $data): AdoptionInterest {
                             $record->update($data);
-
+                            if ($record->status == AdoptionAdStatus::Closed->name){
+                                dispatch(new SendAdoptionInterestStatusChangeEmailJob($record->user, $record));
+                            }
                             return $record;
                         })
                         ->after(function () {
