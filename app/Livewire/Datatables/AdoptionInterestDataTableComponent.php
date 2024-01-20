@@ -56,40 +56,7 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                 $data['created_until'],
                                 fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
-                    }),
-                Filter::make('city')
-                    ->form([
-                        TextInput::make('city'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['city'],
-                                fn(Builder $query, $city): Builder => $query->where('city', 'LIKE', "%".$city."%"),
-                            );
-                    }),
-                Filter::make('Phone Number')
-                    ->form([
-                        TextInput::make('contact_phone_number'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['contact_phone_number'],
-                                fn(Builder $query, $contact_phone_number): Builder => $query->where('contact_phone_number', 'LIKE', "%".$contact_phone_number."%"),
-                            );
-                    }),
-                Filter::make('Email')
-                    ->form([
-                        TextInput::make('contact_email'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['contact_email'],
-                                fn(Builder $query, $contact_email): Builder => $query->where('contact_email', 'LIKE', "%".$contact_email."%"),
-                            );
-                    }),
+                    })
             ])->actions([
                 ActionGroup::make([
                     EditAction::make()
