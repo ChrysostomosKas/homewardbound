@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('zip_code');
             $table->string('contact_email');
             $table->text('reason')->nullable();
+            $table->text('adoption_certificate')->nullable();
             $table->timestamps();
         });
     }

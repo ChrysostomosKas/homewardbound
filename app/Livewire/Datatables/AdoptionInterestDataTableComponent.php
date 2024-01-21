@@ -6,6 +6,7 @@ use App\Enums\AdoptionAdStatus;
 use App\Jobs\SendAdoptionInterestStatusChangeEmailJob;
 use App\Models\AdoptionInterest;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -68,10 +69,17 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                     'Rejected' => 'Rejected'
                                 ])
                                 ->required(),
+                            FileUpload::make('adoption_certificate')
+                                ->label('Adoption Certificate')
+                                ->columnSpan(1)
+                                ->nullable()
                         ])
                         ->using(function (AdoptionInterest $record, array $data): AdoptionInterest {
                             $record->update($data);
-                            if ($record->status == AdoptionAdStatus::Closed->name){
+                            if ($record->status == AdoptionAdStatus::Closed->name
+                                || !is_null($record->adoption_certificate)
+                                || $record->status == AdoptionAdStatus::Rejected->name
+                            ){
                                 dispatch(new SendAdoptionInterestStatusChangeEmailJob($record->user, $record));
                             }
                             return $record;
