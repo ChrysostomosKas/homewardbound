@@ -8,6 +8,7 @@ use App\Models\AdoptionInterest;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\ActionGroup;
@@ -72,6 +73,13 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                             FileUpload::make('adoption_certificate')
                                 ->label('Adoption Certificate')
                                 ->columnSpan(1)
+                                ->nullable(),
+                            Textarea::make('reason')
+                                ->label('Reason')
+                                ->helperText('Προσθέστε τον λόγο στην αίτηση μόνο σε περίπτωση ακύρωσης.')
+                                ->columnSpan(1)
+                                ->rows(10)
+                                ->cols(10)
                                 ->nullable()
                         ])
                         ->using(function (AdoptionInterest $record, array $data): AdoptionInterest {
