@@ -27,14 +27,25 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
     use InteractsWithTable;
     use InteractsWithForms;
 
+    public function mount()
+    {
+        dd();
+        //
+    }
+
     /**
      * @throws \Exception
      */
     public function table(Table $table): Table
     {
+        $user = auth()->user();
+
         return $table
             ->heading('Adoption Interests Overview')
-            ->query(AdoptionInterest::query())
+            ->query(AdoptionInterest::query()
+                                            ->when(in_array(2, $user->roles->pluck('id')->toArray()), function ($subQuery) use ($user) {
+                                                $subQuery->where('user_id', '=', $user->id);
+                                            }))
             ->columns([
                 TextColumn::make('user.full_name')->sortable(),
                 TextColumn::make('contact_phone_number')->searchable()->sortable(),
