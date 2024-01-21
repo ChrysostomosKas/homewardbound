@@ -86,7 +86,7 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                             $record->update($data);
                             if ($record->status == AdoptionAdStatus::Closed->name
                                 || !is_null($record->adoption_certificate)
-                                || $record->status == AdoptionAdStatus::Rejected->name
+                                || ($record->status == AdoptionAdStatus::Rejected->name && !is_null($record->reason))
                             ){
                                 dispatch(new SendAdoptionInterestStatusChangeEmailJob($record->user, $record));
                             }
