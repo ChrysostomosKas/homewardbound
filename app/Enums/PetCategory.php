@@ -53,9 +53,9 @@ enum PetCategory
             self::Bird => 'feather',
             self::Fish => 'fish',
             self::Rabbit => 'carrot',
-            self::Hamster => 'fish',
-            self::Reptile => 'fish',
-            self::Amphibian => 'fish',
+            self::Hamster => 'mouse',
+            self::Reptile => 'planet',
+            self::Amphibian => 'confucius',
             self::Horse => 'horse-toy',
             self::Other => 'bookmark-question'
         };

@@ -5,23 +5,28 @@
             <p class="mt-6 text-lg leading-8 text-gray-600">{{ __('Please pick one of the following breed categories to continue') }}</p>
         </div>
 
-        <div class="flex flex-col justify-center items-center mt-4">
-            <div class="min-w-[375px] md:min-w-[700px] xl:min-w-[800px] grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-2 3xl:grid-cols-2">
-                @foreach($this->petCategories as $category)
-                    <div wire:click="selectCategory('{{ $category['name'] }}')" class="flex justify-between items-center border border-gray-200 bg-white shadow-md transition-transform duration-300 transform hover:scale-105 hover:cursor-pointer hover:bg-gray-50">
-                        <div class="ml-[18px] flex h-[90px] items-center">
-                            <div class="rounded-full p-3 ">
-                                <span class="flex items-center text-brand-500 dark:text-white">
-                                    <x-dynamic-component :component="'tabler-'.$category['icon']" class="h-7 w-7 text-black" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-28 lg:gap-y-16 mt-16">
+            @foreach($this->petCategories as $category)
+                <div wire:click="selectCategory('{{ $category['name'] }}')"
+                     class="relative group h-48 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg px-4">
+                    <a href="#" class="block">
+                        <div class="h-28 relative">
+                            <div
+                                class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 group-hover:top-[-5%] group-hover:opacity-[0.9] duration-300 w-36 h-36 bg-gray-900 rounded-xl">
+                                <span class="w-full h-full flex items-center justify-center">
+                                            <x-dynamic-component :component="'tabler-'.$category['icon']"
+                                            class="h-14 w-14 text-white"/>
                                 </span>
                             </div>
                         </div>
-                        <div class="ml-[18px] flex h-[90px] items-center p-3">
-                            <h4 class="text-xl font-bold text-navy-700 dark:text-white ml-[18px]">{{ $category['name'] }}</h4>
+                        <div class="p-6 z-10 w-full">
+                            <p class="mb-2 inline-block text-tg text-center text-gray-500 w-full text-xl font-sans font-semibold leading-snug tracking-normal antialiased">
+                                {{ $category['name'] }}
+                            </p>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     @else
         <livewire:datatables.breedDatatable :breed_type="$this->breed_type"/>

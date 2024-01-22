@@ -29,8 +29,7 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
 
     public function mount()
     {
-        dd();
-        //
+            //
     }
 
     /**
