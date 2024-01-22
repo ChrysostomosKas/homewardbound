@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return view('dashboard'); })->name('dashboard');
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
     /*
