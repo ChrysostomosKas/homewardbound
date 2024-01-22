@@ -4,6 +4,7 @@ namespace App\Livewire\Datatables;
 
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -16,7 +17,9 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class UserDatatable extends Component implements HasForms, HasTable
 {
@@ -29,7 +32,7 @@ class UserDatatable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(User::query())
+            ->query(User::query()->with('roles'))
             ->columns([
                 TextColumn::make('first_name')->searchable()->sortable(),
                 TextColumn::make('last_name')->searchable()->sortable(),
@@ -77,10 +80,15 @@ class UserDatatable extends Component implements HasForms, HasTable
                             TextInput::make('email')
                                 ->required()
                                 ->email(),
+                            Select::make('role')
+                                ->options($this->getRolesProperty())
+                                ->required(),
                         ])
                         ->using(function (User $record, array $data): User {
                             $record->update($data);
-
+                            if ($data['role']) {
+                                $record->syncRoles($data['role']);
+                            }
                             return $record;
                         })
                         ->after(function () {
@@ -93,6 +101,13 @@ class UserDatatable extends Component implements HasForms, HasTable
                     DeleteAction::make(),
                 ])->tooltip('Actions')
             ]);
+    }
+
+    public function getRolesProperty()
+    {
+        return Cache::remember('roles.all', 60 * 60, function(){
+            return Role::get()->pluck('name','id')->toArray();
+        });
     }
 
     public function render()
