@@ -4,8 +4,8 @@ use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
-use App\Livewire\BreedFormComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,4 +59,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('adoption-interests', AdoptionInterestController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Statistics Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/statistics', StatisticsController::class);
 });
