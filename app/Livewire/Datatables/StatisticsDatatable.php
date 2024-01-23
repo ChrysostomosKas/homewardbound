@@ -69,6 +69,8 @@ class StatisticsDatatable extends Component
             }
         } elseif ($this->time_range == 'year') {
             foreach (self::CLASS_ASSOCIATIONS as $key => $value) {
+                $value = $value::all();
+
                 for ($i = 12; $i >= 1; $i--) {
                     $lineChartModel->addSeriesPoint($key, self::DATE_ASSOCIATIONS[$i], $value->filter(function ($value) use ($current_year, $i) {
                         return $value->created_at->year == $current_year && $value->created_at->month == $i;
