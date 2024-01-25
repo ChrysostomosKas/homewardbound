@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\BreedController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,8 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return view('dashboard'); })->name('dashboard');
-    Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+    Route::get('/{locale}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
     /*
     |--------------------------------------------------------------------------
     | Profile Routes

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class Language
 {
@@ -19,10 +20,8 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session()->has('applocale') and array_key_exists(Session()->get('applocale'), config('languages'))) {
-            App::setLocale(Session()->get('applocale'));
-        } else { // This is optional as Laravel will automatically set the fallback language if there is none specified
-            App::setLocale(config('app.fallback_locale'));
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
         }
 
         return $next($request);

@@ -10,8 +10,10 @@
                                 {{ app()->getLocale() == 'en' ? 'English' : 'Ελληνικά' }}
                             </span>
                     <span class="ml-1">
-                        <x-svg class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
+                        <x-svg x-show='open' class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
                                svg="arrow-down"/>
+                        <x-svg x-show='!open' class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
+                               svg="arrow-up"/>
                     </span>
                 </button>
                 <ul x-show='open'
@@ -24,7 +26,7 @@
                     x-transition:leave-end="transform opacity-0 scale-95"
                     class="absolute right-0 z-10 py-1 mt-2 overflow-hidden bg-white rounded-md shadow-md">
                     <li>
-                        <a href="{{ route('lang.switch', 'en') }}"
+                        <a href="{{ route('lang.switch', ['locale' => 'en']) }}"
                            class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900">
                             <span>
                                 {{ __('English') }}
@@ -32,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('lang.switch', 'gr') }}"
+                        <a href="{{ route('lang.switch', ['locale' => 'gr']) }}"
                            class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900">
                             <span>
                                 {{ __('Ελληνικά') }}
@@ -42,6 +44,7 @@
                 </ul>
             </div>
         </div>
+
         <div  class="flex items-center ml-4 md:ml-6">
             <x-dropdown>
                 <x-slot name='trigger'>
