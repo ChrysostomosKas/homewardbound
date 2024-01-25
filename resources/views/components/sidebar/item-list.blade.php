@@ -10,6 +10,3 @@
     <x-sidebar.item href="{{route('breeds.index') }}" :active="request()->routeIs('breeds.*')" icon="list-tree">{{ __('Breeds') }}</x-sidebar.item>
     <x-sidebar.item href="{{route('users.index') }}" :active="request()->routeIs('users.*')" icon="users">{{ __('Users') }}</x-sidebar.item>
 @endif
-<div class="px-2 py-1">
-    <x-button.logout/>
-</div>

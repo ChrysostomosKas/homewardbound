@@ -42,5 +42,31 @@
                 </ul>
             </div>
         </div>
+        <div  class="flex items-center ml-4 md:ml-6">
+            <x-dropdown>
+                <x-slot name='trigger'>
+                    <x-button.dropdown-trigger id="user-menu-button">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->avatar }}" alt="User {{ Auth::user()->full_name }} Avatar">
+                    </x-button.dropdown-trigger>
+                </x-slot>
+
+                <x-dropdown-link href="{{ route('profile.edit', Auth::id()) }}" tabindex="-1" id="user-menu-item-0">
+                    {{ __('Profile') }}
+                </x-dropdown-link>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link href="#" tabindex="-1" id="user-menu-item-2"
+                                     onclick="event.preventDefault();
+                        this.closest('form').submit();"
+                    >
+                        {{ __('Logout') }}
+                    </x-dropdown-link>
+
+                </form>
+
+            </x-dropdown>
+        </div>
     </div>
 </div>
