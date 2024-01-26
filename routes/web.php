@@ -4,6 +4,7 @@ use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
@@ -68,4 +69,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/statistics', StatisticsController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | MedicalRecords Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/medical-records', MedicalRecordController::class);
 });
