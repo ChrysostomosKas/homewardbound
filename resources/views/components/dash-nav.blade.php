@@ -26,7 +26,7 @@
                     x-transition:leave-end="transform opacity-0 scale-95"
                     class="absolute right-0 z-10 py-1 mt-2 overflow-hidden bg-white rounded-md shadow-md">
                     <li>
-                        <a href="{{ route('lang.switch', ['locale' => 'en']) }}"
+                        <a href="{{ route('lang.switch', ['lang' => 'en']) }}"
                            class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900">
                             <span>
                                 {{ __('English') }}
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('lang.switch', ['locale' => 'gr']) }}"
+                        <a href="{{ route('lang.switch', ['lang' => 'gr']) }}"
                            class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900">
                             <span>
                                 {{ __('Ελληνικά') }}

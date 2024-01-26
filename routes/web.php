@@ -24,7 +24,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return view('dashboard'); })->name('dashboard');
-    Route::get('/{locale}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+    Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
     /*
     |--------------------------------------------------------------------------
