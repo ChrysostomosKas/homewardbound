@@ -20,7 +20,7 @@ class MedicalRecordController extends Controller
      */
     public function create()
     {
-        //
+        return view('medical-records.create');
     }
 
     /**
