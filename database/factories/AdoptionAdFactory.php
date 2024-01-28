@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\AdoptionAdStatus;
 use App\Enums\PetCategory;
+use App\Models\DogBreed;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,9 +24,9 @@ class AdoptionAdFactory extends Factory
             'description' => $this->faker->paragraph,
             'type_of_pet' => PetCategory::Dog->name,
             'status' => AdoptionAdStatus::Open->name,
-            'breed' => $this->faker->word,
+            'breed' => DogBreed::inRandomOrder()->first()->name_en,
             'age' => $this->faker->numberBetween(1, 10),
-            'pet_age_unit' => $this->faker->randomElement(['months', 'years']),
+            'pet_age_unit' => $this->faker->randomElement(['Months', 'Years']),
             'size' => $this->faker->randomElement(['Small', 'Medium', 'Large']),
             'color' => $this->faker->colorName,
             'gender' => $this->faker->randomElement(['Male', 'Female']),

@@ -47,6 +47,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
     public string $contact_phone_number = '';
     public string $contact_email = '';
     public $base_image = '';
+    public $images = '';
 
     public function mount($ad_id = null): void
     {
@@ -69,6 +70,8 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'type_of_pet' => $this->adoptionAd->type_of_pet->name,
                 'contact_email' => $this->adoptionAd->contact_email,
                 'base_image' => $this->adoptionAd->base_image,
+                'pet_age_unit' => $this->adoptionAd->pet_age_unit,
+                'images' => $this->adoptionAd->images,
             ]);
         } else {
             $this->form->fill([
@@ -87,7 +90,8 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'type_of_pet' => '',
                 'contact_email' => '',
                 'base_image' => '',
-                'pet_age_unit' => ''
+                'pet_age_unit' => '',
+                'images' => ''
             ]);
 
             $this->adoptionAd = $this->makeBlankAdoptionAdForm();
@@ -149,8 +153,8 @@ class AdoptionAdFormComponent extends Component implements HasForms
                             Select::make('gender')
                                 ->label('Gender')
                                 ->options([
-                                    'male' => 'Male',
-                                    'Female' => 'female'
+                                    'Male' => 'Male',
+                                    'Female' => 'Female'
                                 ])
                                 ->required(),
                         ]),
@@ -237,6 +241,16 @@ class AdoptionAdFormComponent extends Component implements HasForms
                             Checkbox::make('spaying_neutering_status')
                                 ->label('Spaying Neutering Status')
                                 ->inline()
+                        ]),
+                    Grid::make(1)
+                        ->schema([
+                            FileUpload::make('images')
+                                ->label('Extra Images')
+                                ->multiple()
+                                ->columnSpan(1)
+                                ->maxFiles(4)
+                                ->reorderable()
+                                ->nullable(),
                         ]),
                 ])
         ];

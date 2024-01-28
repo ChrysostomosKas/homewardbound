@@ -29,13 +29,15 @@ class AdoptionAd extends Model
         'location',
         'contact_phone_number',
         'contact_email',
-        'base_image'
+        'base_image',
+        'images'
     ];
 
     protected $casts = [
         'type_of_pet' => PetCategory::class,
         'status' => AdoptionAdStatus::class,
-        'base_image' => 'array'
+        'base_image' => 'array',
+        'images' => 'array',
     ];
 
     /*

@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('contact_phone_number');
             $table->string('contact_email');
             $table->text('base_image')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
         });
     }

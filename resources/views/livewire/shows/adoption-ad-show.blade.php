@@ -58,6 +58,34 @@
                         </div>
                     </div>
                 </div>
+                @if(!is_null($adoptionAd->images))
+                    <div class="max-w-2xl mx-auto">
+                        <div x-data="{ activeSlide: 0 }" id="default-carousel" class="relative" data-carousel="static">
+                            <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                                @foreach($adoptionAd->images as $index => $image)
+                                    <div x-show="activeSlide === {{ $index }} " class="duration-700 ease-in-out" data-carousel-item>
+                                        <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800"></span>
+                                        <img src="{{ asset('storage/'.$image) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                                    </div>
+                                @endforeach
+                            </div>
+                            @if(count($adoptionAd->images) > 1)
+                                <button @click="activeSlide = (activeSlide - 1 + {{ count($adoptionAd->images) }}) % {{ count($adoptionAd->images) }}" type="button"
+                                        class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                                        data-carousel-prev>
+                                    <x-tabler-arrow-left class="w-6 h-6 text-white bg-gray-900 rounded-full"/>
+                                </button>
+                            @endif
+                            @if(count($adoptionAd->images) > 1)
+                                <button @click="activeSlide = (activeSlide + 1) % {{ count($adoptionAd->images) }}" type="button"
+                                        class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                                        data-carousel-next>
+                                    <x-tabler-arrow-right class="w-6 h-6 text-white bg-gray-900 rounded-full"/>
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

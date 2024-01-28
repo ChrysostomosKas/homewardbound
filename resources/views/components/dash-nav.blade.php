@@ -10,9 +10,9 @@
                                 {{ app()->getLocale() == 'en' ? 'English' : 'Ελληνικά' }}
                             </span>
                     <span class="ml-1">
-                        <x-svg x-show='open' class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
-                               svg="arrow-down"/>
                         <x-svg x-show='!open' class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
+                               svg="arrow-down"/>
+                        <x-svg x-show='open' class="w-4 h-4 transition-transform duration-150 transform pointer-events-none"
                                svg="arrow-up"/>
                     </span>
                 </button>
