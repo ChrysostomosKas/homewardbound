@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'phone' => $this->faker->phoneNumber(),
             'city' => $this->faker->city(),
+            'address' => $this->faker->address(),
             'zip_code' => $this->faker->postcode(),
             'avatar' => $avatar->create($this->faker->name)->toBase64(), // Use the instance to call create method
             'email' => $this->faker->unique()->safeEmail(),

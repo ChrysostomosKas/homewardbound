@@ -37,6 +37,12 @@
             </div>
 
             <div class="col-span-2 sm:col-span-1">
+                <x-input-label for="address" :value="__('Address')" />
+                <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" required autofocus autocomplete="address" />
+                <x-input-error class="mt-2" :messages="$errors->get('address')" />
+            </div>
+
+            <div class="col-span-2 sm:col-span-1">
                 <x-input-label for="phone" :value="__('Phone')" />
                 <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
