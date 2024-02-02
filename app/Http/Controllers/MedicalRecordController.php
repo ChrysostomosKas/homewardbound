@@ -37,7 +37,9 @@ class MedicalRecordController extends Controller
      */
     public function show(MedicalRecord $medicalRecord)
     {
-        //
+        return view('medical-records.show', [
+            'medicalRecordId' => $medicalRecord->id
+        ]);
     }
 
     /**

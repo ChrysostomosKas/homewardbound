@@ -1,7 +1,7 @@
 <div x-data="{ open: false, redirectTo: '' }">
     @foreach($this->medicalRecords as $medicalRecord)
         <div
-            class="flex items-center bg-red-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-red-700">
+            class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700">
             <div>
                 <x-tabler-folder class="w-10 h-10 text-white fill-white"/>
             </div>
@@ -29,6 +29,10 @@
                     <a href="{{ route('appointments.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
                         <span class="mr-auto">Create Appointment</span>
                         <x-tabler-calendar-plus class="w-6 h-6 text-black"/>
+                    </a>
+                    <a href="{{ route('medical-records.show', $medicalRecord->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                        <span class="mr-auto">Overview</span>
+                        <x-tabler-eye class="w-6 h-6 text-black"/>
                     </a>
                     <a id="delete-medicalRecord"
                        data-medicalRecord-id="{{ $medicalRecord->id }}"
