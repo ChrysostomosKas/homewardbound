@@ -5,6 +5,8 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pet extends Model
 {
@@ -18,7 +20,8 @@ class Pet extends Model
         'weight',
         'color',
         'special_needs',
-        'user_id'
+        'user_id',
+        'microchip_number'
     ];
 
     /**
@@ -38,5 +41,15 @@ class Pet extends Model
     public function medicalRecord(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(MedicalRecord::class);
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

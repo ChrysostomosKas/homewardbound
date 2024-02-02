@@ -1,3 +1,7 @@
 <x-app-layout title=''>
-    <livewire:datatables.medical-record-datatable/>
+    @if(Gate::allows('admin'))
+        <livewire:datatables.medical-record-datatable/>
+    @else
+        <livewire:health-record-viewer/>
+    @endif
 </x-app-layout>

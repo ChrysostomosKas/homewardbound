@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MedicalRecordController;
@@ -76,4 +77,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/medical-records', MedicalRecordController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Appointments Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/appointments', AppointmentController::class);
 });

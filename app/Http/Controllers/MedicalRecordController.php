@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MedicalRecord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedicalRecordController extends Controller
 {
@@ -44,7 +45,9 @@ class MedicalRecordController extends Controller
      */
     public function edit(MedicalRecord $medicalRecord)
     {
-        //
+        return view('medical-records.edit', [
+            'medicalRecordId' => $medicalRecord->id
+        ]);
     }
 
     /**
@@ -60,6 +63,18 @@ class MedicalRecordController extends Controller
      */
     public function destroy(MedicalRecord $medicalRecord)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $medicalRecord->delete();
+
+            DB::commit();
+
+            return response()->json(['message' => 'Medical Record deleted successfully.']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json(['error' => 'Failed to delete medical record. Please try again.']);
+        }
     }
 }
