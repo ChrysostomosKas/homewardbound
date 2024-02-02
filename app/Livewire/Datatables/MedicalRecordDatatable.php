@@ -14,6 +14,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class MedicalRecordDatatable extends Component implements HasForms, HasTable
@@ -55,6 +56,14 @@ class MedicalRecordDatatable extends Component implements HasForms, HasTable
                     DeleteAction::make(),
                 ])->tooltip('Actions')
             ]);
+    }
+
+    /**
+     *
+     */
+    public function createMedicalRecord()
+    {
+        return Redirect::route('medical-records.create');
     }
 
     public function render()

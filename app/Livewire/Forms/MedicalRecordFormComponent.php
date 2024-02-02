@@ -2,15 +2,27 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\AmphibianBreed;
+use App\Models\BirdBreed;
+use App\Models\CatBreed;
+use App\Models\DogBreed;
+use App\Models\FishBreed;
+use App\Models\HamsterBreed;
+use App\Models\HorseBreed;
 use App\Models\MedicalRecord;
 use App\Models\Pet;
+use App\Models\RabbitBreed;
+use App\Models\ReptileBreed;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Get;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -92,16 +104,40 @@ class MedicalRecordFormComponent extends Component implements HasForms
                                 ->label('Name')
                                 ->columnSpan(1)
                                 ->required(),
-                            TextInput::make('species')
-                                ->label('Species')
-                                ->columnSpan(1)
-                                ->required(),
+                            Select::make('species')
+                                ->label('Breed')
+                                ->options([
+                                    'Dog' => 'Dog',
+                                    'Cat' => 'Cat',
+                                    'Bird' => 'Bird',
+                                    'Fish' => 'Fish',
+                                    'Rabbit' => 'Rabbit',
+                                    'Hamster' => 'Hamster',
+                                    'Reptile' => 'Reptile',
+                                    'Amphibian' => 'Amphibian',
+                                    'Horse' => 'Horse'
+                                ])
+                                ->required()
+                                ->preload()
+                                ->live(),
                         ]),
                     Grid::make(2)
                         ->schema([
-                            TextInput::make('breed')
+                            Select::make('breed')
                                 ->label('Breed')
-                                ->columnSpan(1)
+                                ->options(fn(Get $get): Collection =>
+                                match ($get('species')) {
+                                    'Dog' => DogBreed::pluck('name_en', 'name_en'),
+                                    'Cat' => CatBreed::pluck('name_en', 'name_en'),
+                                    'Bird' => BirdBreed::pluck('name_en', 'name_en'),
+                                    'Fish' => FishBreed::pluck('name_en', 'name_en'),
+                                    'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
+                                    'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
+                                    'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
+                                    'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
+                                    'Horse' => HorseBreed::pluck('name_en', 'name_en'),
+                                    default => collect([]),
+                                })
                                 ->required(),
                             TextInput::make('age')
                                 ->label('Age')
