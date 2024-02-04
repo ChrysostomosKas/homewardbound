@@ -27,7 +27,7 @@ class UserLikedAdoptionAds extends Component implements HasForms, HasTable
 
         return $table
             ->query(AdoptionAd::query())
-            ->heading('Your Liked Adoption Ads')
+            ->heading(__('Your Liked Adoption Ads'))
             ->modifyQueryUsing(function ($query) use ($user_adoption_ads_ids) {
                 return $query->whereIn('id', $user_adoption_ads_ids)
                     ->where('status', '=', AdoptionAdStatus::Open->name);

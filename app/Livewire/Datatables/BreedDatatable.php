@@ -43,13 +43,13 @@ class BreedDatatable extends Component implements HasForms, HasTable
         return $table
             ->query($modelClass::query())
             ->columns([
-                TextColumn::make('name_gr')->searchable()->sortable(),
-                TextColumn::make('name_en')->searchable()->sortable(),
+                TextColumn::make('name_gr')->searchable()->sortable()->label('name_gr'),
+                TextColumn::make('name_en')->searchable()->sortable()->label('name_en'),
             ])->filters([
                 Filter::make('created_at')
                     ->form([
-                        DatePicker::make('created_from'),
-                        DatePicker::make('created_until'),
+                        DatePicker::make('created_from')->label(__('created_from')),
+                        DatePicker::make('created_until')->label(__('created_until')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -85,7 +85,7 @@ class BreedDatatable extends Component implements HasForms, HasTable
                                 'delay' => 5000
                             ]);
                         }),
-                    DeleteAction::make(),
+                    DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
     }

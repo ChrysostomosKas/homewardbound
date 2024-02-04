@@ -50,10 +50,10 @@
                                 {{ $adoptionAd->description }}
                             </p>
                             @if($this->interested)
-                                <span class="font-normal text-pink-500">We'll be in touch with you. Thank you!</span>
+                                <span class="font-normal text-pink-500">{{ __('We will be in touch with you. Thank you!') }}</span>
                             @else
-                                <a wire:click="toggleShowForm()" class="font-normal text-pink-500 hover:cursor-pointer">Begin
-                                    Your Adoption Journey</a>
+                                <a wire:click="toggleShowForm()" class="font-normal text-pink-500 hover:cursor-pointer">
+                                    {{ __('Begin Your Adoption Journey') }}</a>
                             @endif
                         </div>
                     </div>

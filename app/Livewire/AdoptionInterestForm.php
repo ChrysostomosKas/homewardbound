@@ -47,12 +47,12 @@ class AdoptionInterestForm extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Section::make('Let Us Know You are Interested in Adopting')
+            Section::make(__('Let Us Know You are Interested in Adopting'))
                 ->schema([
                     Grid::make(2)
                         ->schema([
                             TextInput::make('city')
-                                ->label('City')
+                                ->label(__('City'))
                                 ->columnSpan(1)
                                 ->required()
                                 ->disabled()
@@ -67,13 +67,13 @@ class AdoptionInterestForm extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             TextInput::make('contact_phone_number')
-                                ->label('Contact phone-number')
+                                ->label(__('Contact phone-number'))
                                 ->columnSpan(1)
                                 ->required()
                                 ->disabled()
                                 ->dehydrated(fn () => true),
                             TextInput::make('contact_email')
-                                ->label('Contact email')
+                                ->label(__('Contact email'))
                                 ->columnSpan(1)
                                 ->email()
                                 ->required()

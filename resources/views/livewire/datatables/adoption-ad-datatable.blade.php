@@ -16,7 +16,7 @@
                                 <div class="flex justify-between">
                                     <a href="{{ route('adoption-ads.show', $ad->id) }}"
                                         class="mt-6 py-2 px-4 bg-gray-900 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-gray-700">
-                                        Show
+                                        {{ __('Show') }}
                                     </a>
                                     <div class="flex items-center mt-6 gap-2 hover:cursor-pointer"
                                          wire:click="toggleLike({{ $ad->id }})">
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="absolute top-2 right-2 py-2 px-4 bg-white rounded-lg">
-                                <span class="text-sm font-semibold">09-12-2023</span>
+                                <span class="text-sm font-semibold">{{ $ad->created_at->format('d-m-Y') }}</span>
                             </div>
                         </div>
                     @endforeach

@@ -35,18 +35,18 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Scheduled Appointments')
+            ->heading(__('Scheduled Appointments'))
             ->query(Appointment::query()->where('pet_id', '=', $this->medicalRecord->pet->id))
             ->columns([
-                TextColumn::make('appointment_time')->sortable(),
-                TextColumn::make('reason')->sortable(),
-                TextColumn::make('contact_number')->searchable()->sortable(),
-                TextColumn::make('created_at')->sortable(),
+                TextColumn::make('appointment_time')->sortable()->label(__('Appointment time')),
+                TextColumn::make('reason')->sortable()->label(__('Reason')),
+                TextColumn::make('contact_number')->searchable()->sortable()->label(__('Contact phone-number')),
+                TextColumn::make('created_at')->sortable()->label(__('created_at')),
             ])->filters([
                 Filter::make('created_at')
                     ->form([
-                        DatePicker::make('created_from'),
-                        DatePicker::make('created_until'),
+                        DatePicker::make('created_from')->label(__('created_from')),
+                        DatePicker::make('created_until')->label(__('created_until')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -61,20 +61,20 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
                     })
             ])->actions([
                 ActionGroup::make([
-                    EditAction::make()
+                    EditAction::make()->label(__('Edit'))
                         ->form([
                             TextInput::make('contact_number')
-                                ->label('Contact Number')
+                                ->label(__('Contact phone-number'))
                                 ->columnSpan(1)
                                 ->minLength(10)
                                 ->maxLength(10)
                                 ->nullable(),
                             DateTimePicker::make('appointment_time')
-                                ->label('Appointment Date')
+                                ->label(__('Appointment time'))
                                 ->seconds(false)
                                 ->required(),
                             Textarea::make('reason')
-                                ->label('Reason')
+                                ->label(__('Reason'))
                                 ->helperText('Προσθέστε τον λόγο επίσκεψης στον γιατρό.')
                                 ->columnSpan(1)
                                 ->rows(10)
@@ -93,7 +93,7 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
                                 'delay' => 5000
                             ]);
                         }),
-                    DeleteAction::make(),
+                    DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
     }

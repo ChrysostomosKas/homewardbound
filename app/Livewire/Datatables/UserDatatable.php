@@ -35,16 +35,16 @@ class UserDatatable extends Component implements HasForms, HasTable
         return $table
             ->query(User::query()->with('roles'))
             ->columns([
-                TextColumn::make('first_name')->searchable()->sortable(),
-                TextColumn::make('last_name')->searchable()->sortable(),
-                TextColumn::make('email')->searchable()->sortable(),
-                TextColumn::make('city')->sortable(),
-                TextColumn::make('phone')->sortable(),
+                TextColumn::make('first_name')->searchable()->sortable()->label(__('First Name')),
+                TextColumn::make('last_name')->searchable()->sortable()->label(__('Last Name')),
+                TextColumn::make('email')->searchable()->sortable()->label(__('Email')),
+                TextColumn::make('city')->sortable()->label(__('City')),
+                TextColumn::make('phone')->sortable()->label(__('Phone')),
             ])->filters([
                 Filter::make('created_at')
                     ->form([
-                        DatePicker::make('created_from'),
-                        DatePicker::make('created_until'),
+                        DatePicker::make('created_from')->label(__('created_from')),
+                        DatePicker::make('created_until')->label(__('created_until')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -57,7 +57,7 @@ class UserDatatable extends Component implements HasForms, HasTable
                                 fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
                     }),
-                Filter::make('city')
+                Filter::make('city')->label(__('City'))
                     ->form([
                         TextInput::make('city'),
                     ])
@@ -70,18 +70,18 @@ class UserDatatable extends Component implements HasForms, HasTable
                     }),
             ])->actions([
                 ActionGroup::make([
-                    EditAction::make()
+                    EditAction::make()->label(__('Edit'))
                         ->form([
-                            TextInput::make('first_name')
+                            TextInput::make('first_name')->label(__('First Name'))
                                 ->required()
                                 ->maxLength(255),
-                            TextInput::make('last_name')
+                            TextInput::make('last_name')->label(__('Last Name'))
                                 ->required()
                                 ->maxLength(255),
-                            TextInput::make('email')
+                            TextInput::make('email')->label(__('Email'))
                                 ->required()
                                 ->email(),
-                            Select::make('role')
+                            Select::make('role')->label(__('Role'))
                                 ->options($this->getRolesProperty())
                                 ->required(),
                         ])
@@ -99,7 +99,7 @@ class UserDatatable extends Component implements HasForms, HasTable
                                 'delay' => 5000
                             ]);
                         }),
-                    DeleteAction::make(),
+                    DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
     }

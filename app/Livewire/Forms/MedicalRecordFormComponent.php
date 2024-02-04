@@ -95,17 +95,17 @@ class MedicalRecordFormComponent extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Section::make('Pet Form')
-                ->description('Provide some information about your pet.')
+            Section::make(__('Pet Name'))
+                ->description(__('Provide some information about your pet.'))
                 ->schema([
                     Grid::make(2)
                         ->schema([
                             TextInput::make('name')
-                                ->label('Name')
+                                ->label(__('Name'))
                                 ->columnSpan(1)
                                 ->required(),
                             Select::make('species')
-                                ->label('Breed')
+                                ->label(__('Species'))
                                 ->options([
                                     'Dog' => 'Dog',
                                     'Cat' => 'Cat',
@@ -124,7 +124,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             Select::make('breed')
-                                ->label('Breed')
+                                ->label(__('Breed'))
                                 ->options(fn(Get $get): Collection =>
                                 match ($get('species')) {
                                     'Dog' => DogBreed::pluck('name_en', 'name_en'),
@@ -140,7 +140,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
                                 })
                                 ->required(),
                             TextInput::make('age')
-                                ->label('Age')
+                                ->label(__('Age'))
                                 ->integer()
                                 ->columnSpan(1)
                                 ->required(),
@@ -148,40 +148,40 @@ class MedicalRecordFormComponent extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             TextInput::make('weight')
-                                ->label('Weight')
+                                ->label(__('Weight'))
                                 ->integer()
                                 ->minValue(0)
                                 ->columnSpan(1)
                                 ->nullable(),
                             TextInput::make('color')
-                                ->label('Color')
+                                ->label(__('Color'))
                                 ->columnSpan(1)
                                 ->nullable(),
                         ]),
                     Grid::make(1)
                         ->schema([
                             TextInput::make('microchip_number')
-                                ->label('Microchip Number')
+                                ->label(__('Microchip Number'))
                                 ->columnSpan(1)
                                 ->nullable()
                         ]),
                     Grid::make(1)
                         ->schema([
                             Textarea::make('special_needs')
-                                ->label('Special Needs')
+                                ->label(__('Special Needs'))
                                 ->columnSpan(1)
                                 ->rows(5)
                                 ->cols(5)
                                 ->nullable()
                         ])
                 ]),
-            Section::make('Pet Medical Record Form')
-                ->description('Provide the following information about the pets medical history.')
+            Section::make(__('Pet Medical Record Form'))
+                ->description(__('Provide the following information about the pets medical history.'))
                 ->schema([
                     Grid::make(1)
                         ->schema([
                             Textarea::make('medical_history')
-                                ->label('Medical History')
+                                ->label(__('Medical History'))
                                 ->columnSpan(1)
                                 ->rows(5)
                                 ->cols(5)
@@ -190,7 +190,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
                     Grid::make(1)
                         ->schema([
                             Textarea::make('medications')
-                                ->label('Medications')
+                                ->label(__('Medications'))
                                 ->columnSpan(1)
                                 ->rows(5)
                                 ->cols(5)
@@ -199,7 +199,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
                     Grid::make(1)
                         ->schema([
                             Textarea::make('allergies')
-                                ->label('Allergies')
+                                ->label(__('Allergies'))
                                 ->columnSpan(1)
                                 ->rows(5)
                                 ->cols(5)
@@ -208,18 +208,18 @@ class MedicalRecordFormComponent extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             TextInput::make('emergency_contact_number')
-                                ->label('Emergency Contact Number')
+                                ->label(__('Emergency Contact Number'))
                                 ->columnSpan(1)
                                 ->nullable(),
                             DatePicker::make('spaying_neutering_date')
-                                ->label('Spaying Neutering Date')
+                                ->label(__('Spaying Neutering Date'))
                                 ->columnSpan(1)
                                 ->required(),
                         ]),
                     Grid::make(1)
                         ->schema([
                             Textarea::make('behavioral_notes')
-                                ->label('Behavioral Notes')
+                                ->label(__('Behavioral Notes'))
                                 ->columnSpan(1)
                                 ->rows(5)
                                 ->cols(5)

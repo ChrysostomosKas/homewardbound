@@ -6,8 +6,8 @@
                 <x-tabler-folder class="w-10 h-10 text-white fill-white"/>
             </div>
             <div class="px-3 mr-auto">
-                <h4 class="font-bold">Medical Record {{ $medicalRecord->pet->name }}</h4>
-                <small class="text-xs">created at {{ $medicalRecord->created_at->format('d-m-Y') }}</small>
+                <h4 class="font-bold">{{ __('Medical Record') }} {{ $medicalRecord->pet->name }}</h4>
+                <small class="text-xs">{{ __('created_at') }} {{ $medicalRecord->created_at->format('d-m-Y') }}</small>
             </div>
             <div class="relative">
                 <a @click="open = !open">
@@ -23,22 +23,22 @@
                      x-transition:leave-end="transform opacity-0 scale-95"
                      class="options absolute bg-white text-gray-600 origin-top-right right-0 mt-2 w-56 rounded-md shadow-lg overflow-hidden">
                     <a href="{{ route('medical-records.edit', $medicalRecord->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
-                        <span class="mr-auto">Edit</span>
+                        <span class="mr-auto">{{ __('Edit') }}</span>
                         <x-tabler-pencil class="w-6 h-6 text-black"/>
                     </a>
                     <a href="{{ route('appointments.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
-                        <span class="mr-auto">Create Appointment</span>
+                        <span class="mr-auto">{{ __('Create Appointment') }}</span>
                         <x-tabler-calendar-plus class="w-6 h-6 text-black"/>
                     </a>
                     <a href="{{ route('medical-records.show', $medicalRecord->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
-                        <span class="mr-auto">Overview</span>
+                        <span class="mr-auto">{{ __('Overview') }}</span>
                         <x-tabler-eye class="w-6 h-6 text-black"/>
                     </a>
                     <a id="delete-medicalRecord"
                        data-medicalRecord-id="{{ $medicalRecord->id }}"
                        data-csrf-token="{{ csrf_token() }}"
                        data-modal-show="popup-modal" class="flex py-3 px-2 text-sm font-bold bg-red-500 text-white hover:bg-red-400">
-                        <span class="mr-auto">Delete</span>
+                        <span class="mr-auto">{{ __('Delete') }}</span>
                         <x-tabler-trash class="w-6 h-6 text-white"/>
                     </a>
                 </div>

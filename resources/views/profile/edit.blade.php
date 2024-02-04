@@ -40,7 +40,7 @@
                 <div class="flex flex-row space-x-3">
                     <button
                         @click="openTabMenu=!openTabMenu"
-                        x-text="openTabMenu ? 'Close Form' : 'Edit Profile'"
+                        x-text="openTabMenu ? '{{ __('Close Form') }}' : '{{ __('Edit Profile') }}'"
                         class="flex rounded-md bg-gray-900 py-2 px-4 text-white transition-all duration-150 ease-in-out hover:bg-gray-600">
                         <x-tabler-edit class="mr-2 h-6 w-6 text-white"/>
                         <span x-text="openTabMenu"></span>
@@ -56,19 +56,19 @@
                         :class="{ 'text-indigo-700 bg-gray-200' : tab === 'personalInfo'}" @click="tab = 'personalInfo'"
                         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-indigo-700 hover:cursor-pointer group">
                         <x-tabler-user-circle class="w-6 h-6 me-2 text-gray-400 group-hover:text-gray-500 hover:cursor-pointer"/>
-                        Personal Info
+                        {{ __('Personal Info') }}
                     </a>
                     <a
                         :class="{ 'text-indigo-700 bg-gray-200' : tab === 'passwordSettings'}" @click="tab = 'passwordSettings'"
                         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-indigo-700 hover:cursor-pointer group">
                         <x-tabler-password class="w-6 h-6 me-2 text-gray-400 group-hover:text-gray-500 hover:cursor-pointer"/>
-                        Password Settings
+                        {{ __('Password Settings') }}
                     </a>
                     <a
                         :class="{ 'text-indigo-700 bg-gray-200' : tab === 'accountSettings'}" @click="tab = 'accountSettings'"
                         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-indigo-700 hover:cursor-pointer group">
                         <x-tabler-user-cancel class="w-6 h-6 me-2 text-gray-400 group-hover:text-gray-500 hover:cursor-pointer"/>
-                        Account Settings
+                        {{ __('Account Settings') }}
                     </a>
                 </li>
             </ul>

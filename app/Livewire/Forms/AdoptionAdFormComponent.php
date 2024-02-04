@@ -107,16 +107,16 @@ class AdoptionAdFormComponent extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Section::make('Be a Hero for Pets: Create an Adoption Ad')
+            Section::make(__('Be a Hero for Pets: Create an Adoption Ad'))
                 ->schema([
                     Grid::make(2)
                         ->schema([
                             TextInput::make('title')
-                                ->label('Title')
+                                ->label(__('Title'))
                                 ->columnSpan(1)
                                 ->required(),
                             Select::make('type_of_pet')
-                                ->label('Type of pet')
+                                ->label(__('Type of pet'))
                                 ->options([
                                     'Dog' => 'Dog',
                                     'Cat' => 'Cat',
@@ -135,7 +135,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             Select::make('breed')
-                                ->label('Breed')
+                                ->label(__('Breed'))
                                 ->options(fn(Get $get): Collection =>
                                 match ($get('type_of_pet')) {
                                     'Dog' => DogBreed::pluck('name_en', 'name_en'),
@@ -151,67 +151,67 @@ class AdoptionAdFormComponent extends Component implements HasForms
                                 })
                                 ->required(),
                             Select::make('gender')
-                                ->label('Gender')
+                                ->label(__('Gender'))
                                 ->options([
-                                    'Male' => 'Male',
-                                    'Female' => 'Female'
+                                    'Male' => __('Male'),
+                                    'Female' => __('Female')
                                 ])
                                 ->required(),
                         ]),
                     Grid::make(2)
                         ->schema([
                             TextInput::make('age')
-                                ->label('Age')
+                                ->label(__('Age'))
                                 ->columnSpan(1)
                                 ->integer()
                                 ->minValue(0)
                                 ->maxValue(40)
                                 ->nullable(),
                             Select::make('pet_age_unit')
-                                ->label('Pet Age Unit')
+                                ->label(__('Pet Age Unit'))
                                 ->columnSpan(1)
                                 ->options([
-                                    'Months' => 'Months',
-                                    'Years' => 'Years'
+                                    'Months' => __('Months'),
+                                    'Years' => __('Years')
                                 ])
                                 ->required(),
                         ]),
                     Grid::make(2)
                         ->schema([
                             Select::make('size')
-                                ->label('Size')
+                                ->label(__('Size'))
                                 ->columnSpan(1)
                                 ->options([
-                                    'Small' => 'Small',
-                                    'Medium' => 'Medium',
-                                    'Large' => 'Large',
-                                    'extra_large' => 'Extra Large'
+                                    'Small' => __('Small'),
+                                    'Medium' => __('Medium'),
+                                    'Large' => __('Large'),
+                                    'extra_large' => __('Extra Large')
                                 ])
                                 ->required(),
                             TextInput::make('color')
-                                ->label('Color')
+                                ->label(__('Color'))
                                 ->columnSpan(1)
                                 ->nullable()
                         ]),
                     Grid::make(2)
                         ->schema([
                             TextInput::make('health_condition')
-                                ->label('Health Condition')
+                                ->label(__('Health Condition'))
                                 ->columnSpan(1)
                                 ->required(),
                             TextInput::make('location')
-                                ->label('Location')
+                                ->label(__('Location'))
                                 ->columnSpan(1)
                                 ->required()
                         ]),
                     Grid::make(2)
                         ->schema([
                             TextInput::make('contact_phone_number')
-                                ->label('Contact phone-number')
+                                ->label(__('Contact phone-number'))
                                 ->columnSpan(1)
                                 ->required(),
                             TextInput::make('contact_email')
-                                ->label('Contact email')
+                                ->label(__('Contact email'))
                                 ->columnSpan(1)
                                 ->email()
                                 ->required()
@@ -219,7 +219,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                     Grid::make(1)
                         ->schema([
                             Textarea::make('description')
-                                ->label('Description')
+                                ->label(__('Description'))
                                 ->columnSpan(1)
                                 ->rows(10)
                                 ->cols(10)
@@ -228,7 +228,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                     Grid::make(1)
                         ->schema([
                             FileUpload::make('base_image')
-                                ->label('Image')
+                                ->label(__('Image'))
                                 ->image()
                                 ->columnSpan(1)
                                 ->nullable(),
@@ -236,16 +236,16 @@ class AdoptionAdFormComponent extends Component implements HasForms
                     Grid::make(2)
                         ->schema([
                             Checkbox::make('vaccination_status')
-                                ->label('Vaccination Status')
+                                ->label(__('Vaccination Status'))
                                 ->inline(),
                             Checkbox::make('spaying_neutering_status')
-                                ->label('Spaying Neutering Status')
+                                ->label(__('Spaying Neutering Status'))
                                 ->inline()
                         ]),
                     Grid::make(1)
                         ->schema([
                             FileUpload::make('images')
-                                ->label('Extra Images')
+                                ->label(__('Extra Images'))
                                 ->multiple()
                                 ->columnSpan(1)
                                 ->maxFiles(4)

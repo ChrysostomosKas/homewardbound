@@ -4,7 +4,7 @@
             <div
                 class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-lg transition-transform duration-300 transform hover:scale-105">
                 <div
-                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 ml-2 grid h-16 w-16 place-items-center">
                     <x-tabler-list-details class="w-6 h-6 text-white"/>
                 </div>
                 <div class="p-4 text-right">
@@ -14,14 +14,14 @@
                 </div>
                 <div class="border-t border-blue-gray-50 p-4">
                     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;than last week
+                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;{{ __('than last week') }}
                     </p>
                 </div>
             </div>
             <div
                 class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-lg transition-transform duration-300 transform hover:scale-105">
                 <div
-                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 ml-2 grid h-16 w-16 place-items-center">
                     <x-tabler-files class="w-6 h-6 text-white"/>
                 </div>
                 <div class="p-4 text-right">
@@ -31,14 +31,14 @@
                 </div>
                 <div class="border-t border-blue-gray-50 p-4">
                     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;than last week
+                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;{{ __('than last week') }}
                     </p>
                 </div>
             </div>
             <div
                 class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-lg transition-transform duration-300 transform hover:scale-105">
                 <div
-                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+                    class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 ml-2 grid h-16 w-16 place-items-center">
                     <x-tabler-paw class="w-6 h-6 text-white"/>
                 </div>
                 <div class="p-4 text-right">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="border-t border-blue-gray-50 p-4">
                     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;than last week
+                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;{{ __('than last week') }}
                     </p>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="border-t border-blue-gray-50 p-4">
                     <p class="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;than last week
+                        <strong class="text-{{ $percentageDifference['color'] }}-500">{{ $percentageDifference['text'] }}</strong>&nbsp;{{ __('than last week') }}
                     </p>
                 </div>
             </div>

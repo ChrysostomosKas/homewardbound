@@ -53,27 +53,27 @@ class AppointmentFormComponent extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Section::make('Schedule an Appointment')
-                ->description('Please fill out the form to book an appointment for your pet.')
+            Section::make(__('Schedule an Appointment'))
+                ->description(__('Please fill out the form to book an appointment for your pet.'))
                 ->schema([
                     Grid::make(2)
                         ->schema([
                             TextInput::make('contact_number')
-                                ->label('Contact Number')
+                                ->label(__('Contact phone-number'))
                                 ->columnSpan(1)
                                 ->minLength(10)
                                 ->maxLength(10)
                                 ->nullable(),
                             DateTimePicker::make('appointment_time')
-                                ->label('Appointment Date')
+                                ->label(__('Appointment date'))
                                 ->seconds(false)
                             ->required()
                         ]),
                     Grid::make(1)
                         ->schema([
                             Textarea::make('reason')
-                                ->label('Reason')
-                                ->helperText('Προσθέστε τον λόγο επίσκεψης στον γιατρό.')
+                                ->label(__('Reason'))
+                                ->helperText(__('Add the reason for visiting the doctor.'))
                                 ->columnSpan(1)
                                 ->rows(10)
                                 ->cols(10)

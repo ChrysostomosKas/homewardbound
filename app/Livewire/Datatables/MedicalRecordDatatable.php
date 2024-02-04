@@ -28,17 +28,17 @@ class MedicalRecordDatatable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Medical Records Overview')
+            ->heading(__('Medical Records Overview'))
             ->query(MedicalRecord::query()->with('pet'))
             ->columns([
-                TextColumn::make('pet.name')->sortable(),
-                TextColumn::make('spaying_neutering_date'),
-                TextColumn::make('created_at')->searchable()->sortable(),
+                TextColumn::make('pet.name')->sortable()->label(__('Pet Name')),
+                TextColumn::make('spaying_neutering_date')->label(__('Spaying Neutering Status')),
+                TextColumn::make('created_at')->searchable()->sortable()->label(__('created_at')),
             ])->filters([
                 Filter::make('created_at')
                     ->form([
-                        DatePicker::make('created_from'),
-                        DatePicker::make('created_until'),
+                        DatePicker::make('created_from')->label(__('created_from')),
+                        DatePicker::make('created_until')->label(__('created_until')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -53,7 +53,7 @@ class MedicalRecordDatatable extends Component implements HasForms, HasTable
                     })
             ])->actions([
                 ActionGroup::make([
-                    DeleteAction::make(),
+                    DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
     }

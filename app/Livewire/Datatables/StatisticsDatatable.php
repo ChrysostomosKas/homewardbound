@@ -13,41 +13,44 @@ class StatisticsDatatable extends Component
     public string $time_range = 'week';
     public string $message = '';
 
+    private $dateAssociations;
+
+    public function __construct()
+    {
+        $this->dateAssociations = [
+            '1' => __("January"),
+            '2' => __("February"),
+            '3' => __("March"),
+            '4' => __("April"),
+            '5' => __("May"),
+            '6' => __("June"),
+            '7' => __("July"),
+            '8' => __("August"),
+            '9' => __("September"),
+            '10' => __("October"),
+            '11' => __("November"),
+            '12' => __("December"),
+        ];
+    }
+
     private const CLASS_ASSOCIATIONS = [
         'Users' => User::class,
         'AdoptionInterests' => AdoptionInterest::class,
         'AdoptionAds' => AdoptionAd::class
     ];
 
-    private const DATE_ASSOCIATIONS = [
-        '1' => 'Ιανουάριος',
-        '2' => 'Φεβρουάριος',
-        '3' => 'Μάρτιος',
-        '4' => 'Απρίλιος',
-        '5' => 'Μάιος',
-        '6' => 'Ιούνιος',
-        '7' => 'Ιούλιος',
-        '8' => 'Αύγουστος',
-        '9' => 'Σεπτέμβριος',
-        '10' => 'Οκτώβριος',
-        '11' => 'Νοέμβριος',
-        '12' => 'Δεκέμβριος',
-    ];
-
     public function mount()
     {
-        if ($this->time_range != 'week') {
-            dd($this->time_range);
-        }
+        //
     }
 
     public function render()
     {
 
         $lineChartModel = (new LineChartModel())
-            ->setTitle('Statistics')
+            ->setTitle(__('Statistics'))
             ->multiLine()
-//            ->setColors(['#66DA26', '#f6ad55', '#90cdf4', '#fc8181'])
+            ->setColors(['#66DA26', '#f6ad55', '#90cdf4', '#fc8181'])
             ->setSmoothCurve();
 
         $current_year = date("Y");
@@ -72,7 +75,7 @@ class StatisticsDatatable extends Component
                 $value = $value::all();
 
                 for ($i = 12; $i >= 1; $i--) {
-                    $lineChartModel->addSeriesPoint($key, self::DATE_ASSOCIATIONS[$i], $value->filter(function ($value) use ($current_year, $i) {
+                    $lineChartModel->addSeriesPoint($key, $this->dateAssociations[$i], $value->filter(function ($value) use ($current_year, $i) {
                         return $value->created_at->year == $current_year && $value->created_at->month == $i;
                     })->count());
                 }

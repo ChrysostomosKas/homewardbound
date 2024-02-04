@@ -40,23 +40,23 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
         $user = auth()->user();
 
         return $table
-            ->heading('Adoption Interests Overview')
+            ->heading(__('Adoption Interests Overview'))
             ->query(AdoptionInterest::query()
                                             ->when(in_array(2, $user->roles->pluck('id')->toArray()), function ($subQuery) use ($user) {
                                                 $subQuery->where('user_id', '=', $user->id);
                                             }))
             ->columns([
-                TextColumn::make('user.full_name')->sortable(),
-                TextColumn::make('contact_phone_number')->searchable()->sortable(),
-                TextColumn::make('city')->searchable()->sortable(),
-                TextColumn::make('zip_code')->sortable(),
-                TextColumn::make('contact_email')->searchable()->sortable(),
-                TextColumn::make('status'),
+                TextColumn::make('user.full_name')->sortable()->label(__('Full Name')),
+                TextColumn::make('contact_phone_number')->searchable()->sortable()->label(__('Contact phone-number')),
+                TextColumn::make('city')->searchable()->sortable()->label(__('City')),
+                TextColumn::make('zip_code')->sortable()->label(__('Zip Code')),
+                TextColumn::make('contact_email')->searchable()->sortable()->label(__('Contact email')),
+                TextColumn::make('status')->label(__('Status')),
             ])->filters([
-                Filter::make('created_at')
+                Filter::make('created_at')->label(__('created_at'))
                     ->form([
-                        DatePicker::make('created_from'),
-                        DatePicker::make('created_until'),
+                        DatePicker::make('created_from')->label(__('created_from')),
+                        DatePicker::make('created_until')->label(__('created_until')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -71,9 +71,9 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                     })
             ])->actions([
                 ActionGroup::make([
-                    EditAction::make()
+                    EditAction::make()->label(__('Edit'))
                         ->form([
-                            Select::make('status')
+                            Select::make('status')->label(__('Status'))
                                 ->options([
                                     'Open' => 'Open',
                                     'Closed' => 'Closed',
@@ -81,12 +81,12 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                 ])
                                 ->required(),
                             FileUpload::make('adoption_certificate')
-                                ->label('Adoption Certificate')
+                                ->label(__('Adoption Certificate'))
                                 ->columnSpan(1)
                                 ->nullable(),
                             Textarea::make('reason')
-                                ->label('Reason')
-                                ->helperText('Προσθέστε τον λόγο στην αίτηση μόνο σε περίπτωση ακύρωσης.')
+                                ->label(__('Reason'))
+                                ->helperText(__('You should only add the reason to the request in case of cancellation.'))
                                 ->columnSpan(1)
                                 ->rows(10)
                                 ->cols(10)
@@ -109,7 +109,7 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                 'delay' => 5000
                             ]);
                         }),
-                    DeleteAction::make(),
+                    DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
     }
