@@ -19,6 +19,12 @@
         <div class="grid grid-cols-2 gap-4">
 
             <div class="col-span-2 sm:col-span-1">
+                <x-input-label for="username" :value="__('Username')" />
+                <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
+                <x-input-error class="mt-2" :messages="$errors->get('username')" />
+            </div>
+
+            <div class="col-span-2 sm:col-span-1">
                 <x-input-label for="first_name" :value="__('First Name')" />
                 <x-text-input id="first_name" name="first_name" type="text" class="mt-1 block w-full" :value="old('first_name', $user->first_name)" required autofocus autocomplete="first_name" />
                 <x-input-error class="mt-2" :messages="$errors->get('first_name')" />

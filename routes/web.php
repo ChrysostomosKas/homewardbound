@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MedicalRecordController;
@@ -23,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__.'/auth.php';
+
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
+
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () { return view('dashboard'); })->name('dashboard');

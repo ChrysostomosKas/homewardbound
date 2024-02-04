@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')"/>
-    <div class="flex justify-center self-center  z-10">
+    <div class="flex justify-center self-center z-10">
         <div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-black">Login In </h3>
@@ -57,19 +57,17 @@
                     <span class="h-px w-16 bg-black"></span>
                 </div>
                 <div class="flex justify-center gap-5 w-full">
-                    <button type="submit"
+                    <a href="/auth/google/redirect"
                             class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-600 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
                         <x-tabler-brand-google class="w-6 mr-2 h-6 text-black"/>
 
                         <span class="text-black">Google</span>
-                    </button>
+                    </a>
 
-                    <button type="submit"
-                            class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500 px-">
+                    <a href="/auth/github/redirect" class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500 px-2">
                         <x-tabler-brand-github-filled class="w-6 mr-2 h-6 text-black"/>
                         <span class="text-black">Github</span>
-                    </button>
-
+                    </a>
                 </div>
             </div>
             </form>
