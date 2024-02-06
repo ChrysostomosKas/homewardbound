@@ -43,4 +43,8 @@ return [
         'redirect' => '/auth/github/callback',
     ],
 
+    'ga4' => [
+        'measurementId' => env('GA_MEASUREMENT_ID'),
+    ]
+
 ];

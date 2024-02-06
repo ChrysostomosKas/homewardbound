@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
@@ -89,4 +90,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/appointments', AppointmentController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Analytics Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/analytics', AnalyticsController::class);
 });
