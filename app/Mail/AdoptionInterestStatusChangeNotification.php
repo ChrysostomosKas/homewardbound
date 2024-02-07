@@ -30,9 +30,20 @@ class AdoptionInterestStatusChangeNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.adoptionInterest-status-change-notification')
-            ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
-            ->subject('Η κατάσταση του αίτησης σας άλλαξε');
+        $pdfFileName = $this->adoptionInterest->adoption_certificate;
+        $pdfPath = storage_path('app/public/' . $pdfFileName);
+
+        if (!file_exists($pdfPath)) {
+            return $this->markdown('emails.adoptionInterest-status-change-notification')
+                ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
+                ->subject('Η κατάσταση του αίτησης σας άλλαξε');
+        } else {
+            $pdfContent = file_get_contents($pdfPath);
+            return $this->markdown('emails.adoptionInterest-status-change-notification')
+                ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
+                ->subject('Η κατάσταση του αίτησης σας άλλαξε')
+                ->attachData($pdfContent, 'filename.pdf');
+        }
     }
 
     /**
