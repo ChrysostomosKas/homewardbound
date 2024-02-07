@@ -1,5 +1,17 @@
-<div>
-    <section class="py-4 shadow-2xl">
+<div x-data="{ showForm: false }">
+    <div x-show="showForm" class="flex justify-end">
+        <x-button.icon-button @click="showForm = false" class="bg-gray-500 hover:bg-gray-600"
+                              svg='eye'>{{ __('Show Ad') }}</x-button.icon-button>
+    </div>
+
+    <section x-show="!showForm"
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="transform opacity-0 translate-y-4"
+             x-transition:enter-end="transform opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="transform opacity-100 translate-y-0"
+             x-transition:leave-end="transform opacity-0 translate-y-4"
+             class="py-4 shadow-2xl">
         <div class="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg">
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
@@ -50,9 +62,10 @@
                                 {{ $adoptionAd->description }}
                             </p>
                             @if($this->interested)
-                                <span class="font-normal text-pink-500">{{ __('We will be in touch with you. Thank you!') }}</span>
+                                <span
+                                    class="font-normal text-pink-500">{{ __('We will be in touch with you. Thank you!') }}</span>
                             @else
-                                <a wire:click="toggleShowForm()" class="font-normal text-pink-500 hover:cursor-pointer">
+                                <a @click="showForm = !showForm" class="font-normal text-pink-500 hover:cursor-pointer">
                                     {{ __('Begin Your Adoption Journey') }}</a>
                             @endif
                         </div>
@@ -63,21 +76,28 @@
                         <div x-data="{ activeSlide: 0 }" id="default-carousel" class="relative" data-carousel="static">
                             <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                                 @foreach($adoptionAd->images as $index => $image)
-                                    <div x-show="activeSlide === {{ $index }} " class="duration-700 ease-in-out" data-carousel-item>
-                                        <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800"></span>
-                                        <img src="{{ asset('storage/'.$image) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                                    <div x-show="activeSlide === {{ $index }} " class="duration-700 ease-in-out"
+                                         data-carousel-item>
+                                        <span
+                                            class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800"></span>
+                                        <img src="{{ asset('storage/'.$image) }}"
+                                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                                             alt="...">
                                     </div>
                                 @endforeach
                             </div>
                             @if(count($adoptionAd->images) > 1)
-                                <button @click="activeSlide = (activeSlide - 1 + {{ count($adoptionAd->images) }}) % {{ count($adoptionAd->images) }}" type="button"
-                                        class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
-                                        data-carousel-prev>
+                                <button
+                                    @click="activeSlide = (activeSlide - 1 + {{ count($adoptionAd->images) }}) % {{ count($adoptionAd->images) }}"
+                                    type="button"
+                                    class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
+                                    data-carousel-prev>
                                     <x-tabler-arrow-left class="w-6 h-6 text-white bg-gray-900 rounded-full"/>
                                 </button>
                             @endif
                             @if(count($adoptionAd->images) > 1)
-                                <button @click="activeSlide = (activeSlide + 1) % {{ count($adoptionAd->images) }}" type="button"
+                                <button @click="activeSlide = (activeSlide + 1) % {{ count($adoptionAd->images) }}"
+                                        type="button"
                                         class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
                                         data-carousel-next>
                                     <x-tabler-arrow-right class="w-6 h-6 text-white bg-gray-900 rounded-full"/>
@@ -90,7 +110,16 @@
         </div>
     </section>
 
-    @if($this->showForm)
+    <div
+        x-show="showForm"
+        x-transition:enter="transition ease-out duration-400"
+        x-transition:enter-start="transform opacity-0 translate-y-4"
+        x-transition:enter-end="transform opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-400"
+        x-transition:leave-start="transform opacity-100 translate-y-0"
+        x-transition:leave-end="transform opacity-0 translate-y-4"
+    >
         <livewire:adoption-interest-form :ad_id='$adoptionAd->id'/>
-    @endif
+    </div>
+
 </div>

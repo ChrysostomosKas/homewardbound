@@ -10,7 +10,6 @@ use Livewire\Component;
 class AdoptionAdShow extends Component
 {
     public AdoptionAd $adoptionAd;
-    public bool $showForm = false;
     public bool $interested = false;
 
     public function mount()
@@ -20,11 +19,6 @@ class AdoptionAdShow extends Component
                                                 ->where('adoption_ad_id', '=', $this->adoptionAd->id)
                                                 ->where('status', '=', AdoptionAdStatus::Open->name)
                                                 ->exists();
-    }
-
-    public function toggleShowForm()
-    {
-        $this->showForm = true;
     }
 
     public function render()

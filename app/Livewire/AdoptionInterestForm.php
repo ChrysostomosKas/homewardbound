@@ -55,13 +55,11 @@ class AdoptionInterestForm extends Component implements HasForms
                                 ->label(__('City'))
                                 ->columnSpan(1)
                                 ->required()
-                                ->disabled()
                                 ->dehydrated(fn () => true),
                             TextInput::make('zip_code')
                                 ->label('Zip Code')
                                 ->columnSpan(1)
                                 ->required()
-                                ->disabled()
                                 ->dehydrated(fn () => true),
                         ]),
                     Grid::make(2)
@@ -70,14 +68,12 @@ class AdoptionInterestForm extends Component implements HasForms
                                 ->label(__('Contact phone-number'))
                                 ->columnSpan(1)
                                 ->required()
-                                ->disabled()
                                 ->dehydrated(fn () => true),
                             TextInput::make('contact_email')
                                 ->label(__('Contact email'))
                                 ->columnSpan(1)
                                 ->email()
                                 ->required()
-                                ->disabled()
                                 ->dehydrated(fn () => true)
                         ]),
                 ])
