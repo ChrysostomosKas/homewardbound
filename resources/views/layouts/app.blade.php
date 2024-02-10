@@ -23,6 +23,11 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4kaHgwr5QNxY7konAz3KJqKLqiHarxQY&loading=async&callback=initMap">
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('header_scripts')
     @stack('scripts')

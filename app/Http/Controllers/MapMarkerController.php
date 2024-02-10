@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AddMarkerJob;
 use App\Models\MapMarker;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class MapMarkerController extends Controller
      */
     public function index()
     {
-        //
+        return view('maps.index');
     }
 
     /**
@@ -28,7 +29,17 @@ class MapMarkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestData = $request->all();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public', $fileName);
+            $requestData['image'] = $fileName;
+        }
+
+        dispatch(new AddMarkerJob($requestData));
+        return response()->json(['message' => 'Your changes have been successfully saved!']);
     }
 
     /**

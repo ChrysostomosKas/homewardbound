@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('map_markers', function (Blueprint $table) {
             $table->id();
-            $table->double('latitude');
-            $table->double('longitude');
+            $table->double('lat');
+            $table->double('lng');
+            $table->string('contact_phone_number')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

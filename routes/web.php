@@ -7,6 +7,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MapMarkerController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticsController;
@@ -97,4 +98,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/analytics', AnalyticsController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Map Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/report-map', MapMarkerController::class);
+    Route::post('/save-location', [MapMarkerController::class, 'store'])->name('save.location');
 });
