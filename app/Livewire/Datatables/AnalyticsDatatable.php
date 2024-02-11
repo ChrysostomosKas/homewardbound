@@ -18,13 +18,32 @@ class AnalyticsDatatable extends Component
         $this->mostVisitedPagesData = Analytics::fetchMostVisitedPages(Period::days(7));
 
         $this->mostVisitedPagesData = $this->mostVisitedPagesData->map(function ($pageTitle) {
-            $pageTitle['fullPageUrl'] = ucwords(str_replace('homewardbound.test/', '', $pageTitle['fullPageUrl']));
-            if ($pageTitle['fullPageUrl'] == '') {
-                $pageTitle['fullPageUrl'] = 'Dashboard';
+            $url = parse_url($pageTitle['fullPageUrl']);
+            $path = trim($url['path'], '/');
+            $segments = explode('/', $path);
+            $basicPage = count($segments) >= 2 ? $segments[1] : 'Dashboard';
+
+            if (empty($basicPage)) {
+                $basicPage = 'Dashboard';
             }
-            return $pageTitle;
-        });
-        }
+
+            return [
+                'basicPage' => ucwords($basicPage),
+                'screenPageViews' => $pageTitle['screenPageViews']
+            ];
+        })->reduce(function ($carry, $item) {
+            $basicPage = $item['basicPage'];
+            $screenPageViews = $item['screenPageViews'];
+
+            if (!isset($carry[$basicPage])) {
+                $carry[$basicPage] = 0;
+            }
+
+            $carry[$basicPage] += $screenPageViews;
+
+            return $carry;
+        }, []);
+    }
 
     public function render()
     {

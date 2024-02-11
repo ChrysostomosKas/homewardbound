@@ -69,17 +69,17 @@
 
         <div class="bg-white rounded-lg shadow-lg">
             <div class="p-4">
-                <h2 class="px-3 py-3 text-lg font-medium text-gray-900 border-b border-gray-200">{{ __('Top Countries') }}</h2>
+                <h2 class="px-3 py-3 text-lg font-medium text-gray-900 border-b border-gray-200">{{ __('Most Visited Pages') }}</h2>
                 <div class="mt-6 flow-root overflow-auto min-h-[200px] max-h-[200px]">
                     <ul role="list" class="-my-4 divide-y divide-gray-200">
-                        @forelse($this->mostVisitedPagesData as $pagesData)
+                        @forelse($this->mostVisitedPagesData as $index => $pagesData)
                             <li class="flex items-center py-4 space-x-3">
                                 <div class="flex-shrink-0">
                                     <x-svg svg="link" class="w-8 h-8 text-gray-500 rounded-full"/>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900">
-                                        {{ $pagesData['fullPageUrl'] }} : {{ $pagesData['screenPageViews'] }} {{ __('Page Views') }}
+                                        {{ $index }} : {{ $pagesData }} {{ __('Page Views') }}
                                     </p>
                                 </div>
                             </li>
