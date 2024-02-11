@@ -23,6 +23,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Get;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -279,7 +280,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
             ]);
         }
 
-        return redirect()->route('dashboard');
+        return Redirect::route('medical-records.index');
     }
 
     public function render()

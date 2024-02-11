@@ -107,7 +107,7 @@ class AdoptionInterestForm extends Component implements HasForms
             ]);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('adoption-interests.index');
     }
 
     public function render()

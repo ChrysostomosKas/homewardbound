@@ -280,7 +280,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
             ]);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('adoption-ads.index');
     }
 
     public function render()

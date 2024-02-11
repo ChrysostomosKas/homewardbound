@@ -135,7 +135,7 @@ class AppointmentFormComponent extends Component implements HasForms
             ]);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('medical-records.index');
     }
 
     public function render()
