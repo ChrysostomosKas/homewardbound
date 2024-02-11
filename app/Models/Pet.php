@@ -45,7 +45,7 @@ class Pet extends Model
 
     public function appointments(): HasMany
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasMany(DoctorAppointment::class);
     }
 
     public function user(): BelongsTo

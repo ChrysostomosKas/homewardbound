@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Appointment;
+use App\Models\DoctorAppointment;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -16,29 +16,35 @@ class AppointmentFormComponent extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public Appointment $appointment;
+    public DoctorAppointment $appointment;
     public string $contact_number;
-    public string $appointment_time;
+    public string $appointment_date;
     public string $reason;
-    public int $pet_id;
+    public string $diagnosis;
+    public string $prescription;
+    public int $medical_record_id;
 
-    public function mount($appointment_id = null, $pet_id = null): void
+    public function mount($appointment_id = null, $medical_record_id = null): void
     {
-        $this->pet_id = $pet_id;
+        $this->medical_record_id = $medical_record_id;
 
         if ($appointment_id) {
-            $this->appointment = Appointment::find($appointment_id);
+            $this->appointment = DoctorAppointment::find($appointment_id);
 
             $this->form->fill([
                 'contact_number' => $this->appointment->contact_number,
-                'appointment_time' => $this->appointment->appointment_time,
-                'reason' => $this->appointment->appointment_time
+                'appointment_date' => $this->appointment->appointment_date,
+                'reason' => $this->appointment->appointment_time,
+                'diagnosis' => $this->appointment->diagnosis,
+                'prescription' => $this->appointment->prescription
             ]);
         } else {
             $this->form->fill([
                 'contact_number' => '',
-                'appointment_time' => '',
-                'reason' => ''
+                'appointment_date' => '',
+                'reason' => '',
+                'diagnosis' => '',
+                'prescription' => ''
             ]);
 
             $this->appointment = $this->makeBlankAppointmentForm();
@@ -47,7 +53,7 @@ class AppointmentFormComponent extends Component implements HasForms
 
     public function makeBlankAppointmentForm()
     {
-        return Appointment::make(['created_at' => now()]);
+        return DoctorAppointment::make(['created_at' => now()]);
     }
 
     protected function getFormSchema(): array
@@ -64,16 +70,34 @@ class AppointmentFormComponent extends Component implements HasForms
                                 ->minLength(10)
                                 ->maxLength(10)
                                 ->nullable(),
-                            DateTimePicker::make('appointment_time')
+                            DateTimePicker::make('appointment_date')
                                 ->label(__('Appointment date'))
                                 ->seconds(false)
-                            ->required()
+                                ->required()
                         ]),
                     Grid::make(1)
                         ->schema([
                             Textarea::make('reason')
                                 ->label(__('Reason'))
                                 ->helperText(__('Add the reason for visiting the doctor.'))
+                                ->columnSpan(1)
+                                ->rows(10)
+                                ->cols(10)
+                                ->nullable(),
+                        ]),
+                    Grid::make(1)
+                        ->schema([
+                            Textarea::make('diagnosis')
+                                ->label(__('Diagnosis'))
+                                ->columnSpan(1)
+                                ->rows(10)
+                                ->cols(10)
+                                ->nullable(),
+                        ]),
+                    Grid::make(1)
+                        ->schema([
+                            Textarea::make('prescription')
+                                ->label(__('Prescription'))
                                 ->columnSpan(1)
                                 ->rows(10)
                                 ->cols(10)
@@ -88,11 +112,13 @@ class AppointmentFormComponent extends Component implements HasForms
      */
     public function saveAppointment()
     {
-        $new_appointment = Appointment::updateOrCreate(
+        $new_appointmentData = $this->form->getState() + [
+                'medical_record_id' => $this->medical_record_id
+            ];
+
+        $new_appointment = DoctorAppointment::updateOrCreate(
             ['id' => $this->appointment->id],
-            $this->form->getState() + [
-                'pet_id' => $this->pet_id
-            ]
+            $new_appointmentData
         );
 
         if ($new_appointment->id) {

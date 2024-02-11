@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Shows;
 
-use App\Models\Appointment;
+use App\Models\DoctorAppointment;
 use App\Models\MedicalRecord;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -36,9 +36,9 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
     {
         return $table
             ->heading(__('Scheduled Appointments'))
-            ->query(Appointment::query()->where('pet_id', '=', $this->medicalRecord->pet->id))
+            ->query(DoctorAppointment::query()->where('medical_record_id', '=', $this->medicalRecord->id))
             ->columns([
-                TextColumn::make('appointment_time')->sortable()->label(__('Appointment time')),
+                TextColumn::make('appointment_date')->sortable()->label(__('Appointment Date')),
                 TextColumn::make('reason')->sortable()->label(__('Reason')),
                 TextColumn::make('contact_number')->searchable()->sortable()->label(__('Contact phone-number')),
                 TextColumn::make('created_at')->sortable()->label(__('created_at')),
@@ -81,7 +81,7 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
                                 ->cols(10)
                                 ->nullable()
                         ])
-                        ->using(function (Appointment $record, array $data): Appointment {
+                        ->using(function (DoctorAppointment $record, array $data): DoctorAppointment {
                             $record->update($data);
 
                             return $record;

@@ -12,15 +12,17 @@ class DoctorAppointmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('appointments.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('appointments.create', [
+            'medical_record_id' => $request->get('medical_record_id')
+        ]);
     }
 
     /**

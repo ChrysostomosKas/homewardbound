@@ -3,9 +3,9 @@
 use App\Http\Controllers\AdoptionAdController;
 use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\AnalyticsController;
-use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
+use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MapMarkerController;
 use App\Http\Controllers\MedicalRecordController;
@@ -90,7 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     | Appointments Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('/appointments', AppointmentController::class);
+    Route::resource('/appointments', DoctorAppointmentController::class);
 
     /*
     |--------------------------------------------------------------------------

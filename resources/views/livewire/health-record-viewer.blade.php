@@ -1,4 +1,7 @@
 <div x-data="{ open: false, redirectTo: '' }">
+    <div class="flex justify-end mb-4">
+        <x-button.icon-button wire:click.prevent="createMedicalRecord" svg='plus'>{{ __('New Medical Folder') }}</x-button.icon-button>
+    </div>
     @foreach($this->medicalRecords as $medicalRecord)
         <div
             class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700">
@@ -26,7 +29,7 @@
                         <span class="mr-auto">{{ __('Edit') }}</span>
                         <x-tabler-pencil class="w-6 h-6 text-black"/>
                     </a>
-                    <a href="{{ route('appointments.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                    <a href="{{ route('appointments.create', ['medical_record_id' => $medicalRecord->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
                         <span class="mr-auto">{{ __('Create Appointment') }}</span>
                         <x-tabler-calendar-plus class="w-6 h-6 text-black"/>
                     </a>

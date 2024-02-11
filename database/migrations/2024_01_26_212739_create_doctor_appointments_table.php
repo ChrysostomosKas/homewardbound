@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(MedicalRecord::class)->constrained()->onDelete('cascade');
             $table->dateTime('appointment_date');
             $table->text('reason')->nullable();
+            $table->string('contact_number')->nullable();
             $table->text('diagnosis')->nullable();
             $table->text('prescription')->nullable();
             $table->timestamps();
