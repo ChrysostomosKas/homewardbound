@@ -4,7 +4,7 @@
     </div>
     @foreach($this->medicalRecords as $medicalRecord)
         <div
-            class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700">
+            class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700 mb-4">
             <div>
                 <x-tabler-folder class="w-10 h-10 text-white fill-white"/>
             </div>
