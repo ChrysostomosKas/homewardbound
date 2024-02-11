@@ -123,48 +123,48 @@ class MedicalRecordFormComponent extends Component implements HasForms
                         ]),
                     Grid::make(2)
                         ->schema([
-                            Select::make('breed')
-                                ->label(__('Breed'))
-                                ->options(fn(Get $get): Collection =>
-                                match ($get('species')) {
-                                    'Dog' => DogBreed::pluck('name_en', 'name_en'),
-                                    'Cat' => CatBreed::pluck('name_en', 'name_en'),
-                                    'Bird' => BirdBreed::pluck('name_en', 'name_en'),
-                                    'Fish' => FishBreed::pluck('name_en', 'name_en'),
-                                    'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
-                                    'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
-                                    'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
-                                    'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
-                                    'Horse' => HorseBreed::pluck('name_en', 'name_en'),
-                                    default => collect([]),
-                                })
-                                ->required(),
                             TextInput::make('age')
                                 ->label(__('Age'))
                                 ->integer()
                                 ->columnSpan(1)
                                 ->required(),
-                        ]),
-                    Grid::make(2)
-                        ->schema([
                             TextInput::make('weight')
                                 ->label(__('Weight'))
                                 ->integer()
                                 ->minValue(0)
                                 ->columnSpan(1)
                                 ->nullable(),
+                        ]),
+                    Grid::make(2)
+                        ->schema([
                             TextInput::make('color')
                                 ->label(__('Color'))
                                 ->columnSpan(1)
                                 ->nullable(),
-                        ]),
-                    Grid::make(1)
-                        ->schema([
                             TextInput::make('microchip_number')
                                 ->label(__('Microchip Number'))
                                 ->columnSpan(1)
                                 ->nullable()
                         ]),
+                        ]),
+                    Grid::make(1)
+                        ->schema([
+                    Select::make('breed')
+                        ->label(__('Breed'))
+                        ->options(fn(Get $get): Collection =>
+                        match ($get('species')) {
+                            'Dog' => DogBreed::pluck('name_en', 'name_en'),
+                            'Cat' => CatBreed::pluck('name_en', 'name_en'),
+                            'Bird' => BirdBreed::pluck('name_en', 'name_en'),
+                            'Fish' => FishBreed::pluck('name_en', 'name_en'),
+                            'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
+                            'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
+                            'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
+                            'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
+                            'Horse' => HorseBreed::pluck('name_en', 'name_en'),
+                            default => collect([]),
+                        })
+                        ->required(),
                     Grid::make(1)
                         ->schema([
                             Textarea::make('special_needs')
