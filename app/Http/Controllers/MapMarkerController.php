@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AddMarkerJob;
+use App\Jobs\InformSupportUsersJob;
 use App\Models\MapMarker;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,8 @@ class MapMarkerController extends Controller
         }
 
         dispatch(new AddMarkerJob($requestData));
+        dispatch(new InformSupportUsersJob($requestData['contact_phone_number']));
+
         return response()->json(['message' => 'Your changes have been successfully saved!']);
     }
 
