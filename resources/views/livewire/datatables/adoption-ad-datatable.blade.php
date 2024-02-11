@@ -5,7 +5,7 @@
                     @foreach($adoptionAds as $ad)
                         <div
                             class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[550px] transform hover:scale-105 transition-all ease-in-out duration-300">
-                            <img class="rounded-t-lg"
+                            <img class="rounded-t-lg max-h-[280px]"
                                  src="{{ asset('storage/'.$ad->base_image) }}"
                                  alt=""/>
                             <div class="py-6 px-8 rounded-lg bg-white">
