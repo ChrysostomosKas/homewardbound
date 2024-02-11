@@ -25,4 +25,12 @@ class AdoptionInterest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /*
+     *
+     */
+    public function adoptionAd(): BelongsTo
+    {
+        return $this->belongsTo(AdoptionAd::class);
+    }
 }

@@ -32,7 +32,7 @@ class InformSupportUsersJob implements ShouldQueue
         $supportUsers = User::whereHas('roles', function ($query) {
             $query->where('id', 3);
         })->get();
-dd('test');
+
         foreach ($supportUsers as $supportUser) {
             Mail::to($supportUser->email)->send(new InformSupportUserEmail($this->contact_phone_number));
         }

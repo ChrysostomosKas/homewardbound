@@ -3,6 +3,6 @@
     @if(Gate::allows('admin'))
     <livewire:dashboard-chart-panel />
     @else
-        <livewire:user-liked-adoption-ads />
+        <livewire:user-adoption-interests />
     @endif
 </div>
