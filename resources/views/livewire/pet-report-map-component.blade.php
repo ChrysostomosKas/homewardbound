@@ -110,6 +110,7 @@
                     body: formData
                 })
                     .then(response => {
+                        window.location.reload()
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }

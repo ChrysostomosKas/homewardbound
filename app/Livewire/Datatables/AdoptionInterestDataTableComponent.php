@@ -20,6 +20,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class AdoptionInterestDataTableComponent extends Component implements HasForms, HasTable
@@ -71,7 +72,7 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                     })
             ])->actions([
                 ActionGroup::make([
-                    EditAction::make()->label(__('Edit'))
+                    EditAction::make()->label(__('Edit'))->visible(Gate::allows('admin'))
                         ->form([
                             Select::make('status')->label(__('Status'))
                                 ->options([

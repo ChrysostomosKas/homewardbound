@@ -4,7 +4,7 @@
             <td>
                 <table>
                     <tr>
-                        @if($adoptionInterest->status == \App\Enums\AdoptionAdStatus::Closed->name)
+                        @if($adoptionInterest->status->name == \App\Enums\AdoptionAdStatus::Closed->name)
                             <td>
                                 <p>Dear {{ $adoptionInterest->user->full_name }},</p>
                                 <p>We wanted to express our sincere gratitude for your interest in adopting a pet from our organization.</p>
