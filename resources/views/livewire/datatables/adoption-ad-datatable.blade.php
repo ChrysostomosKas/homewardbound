@@ -9,15 +9,28 @@
                                  src="{{ asset('storage/'.$ad->base_image) }}"
                                  alt="Ad Image">
                             <div class="py-6 px-8 rounded-lg bg-white">
-                                <a href="{{ route('adoption-ads.show', $ad->id) }}">
-                                    <h1 class="text-gray-700 font-bold text-xl mb-3 hover:text-gray-900 ">{{ $ad->title }}</h1>
-                                </a>
+                                @if($ad->user_id == auth()->id())
+                                    <a href="{{ route('adoption-ads.edit', $ad->id) }}">
+                                        <h1 class="text-gray-700 font-bold text-xl mb-3 hover:text-gray-900 ">{{ $ad->title }}</h1>
+                                    </a>
+                                @else
+                                    <a href="{{ route('adoption-ads.show', $ad->id) }}">
+                                        <h1 class="text-gray-700 font-bold text-xl mb-3 hover:text-gray-900 ">{{ $ad->title }}</h1>
+                                    </a>
+                                @endif
                                 <p class="text-gray-700 tracking-wide line-clamp-4">{{ $ad->description }}</p>
                                 <div class="flex justify-between">
+                                    @if($ad->user_id == auth()->id())
+                                        <a href="{{ route('adoption-ads.edit', $ad->id) }}"
+                                           class="mt-6 py-2 px-4 bg-yellow-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-yellow-700">
+                                            {{ __('Edit') }}
+                                        </a>
+                                    @else
                                     <a href="{{ route('adoption-ads.show', $ad->id) }}"
                                         class="mt-6 py-2 px-4 bg-gray-900 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:bg-gray-700">
                                         {{ __('Show') }}
                                     </a>
+                                    @endif
                                     <div class="flex items-center mt-6 gap-2 hover:cursor-pointer"
                                          wire:click="toggleLike({{ $ad->id }})">
                                         <x-tabler-heart

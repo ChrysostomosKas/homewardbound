@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\AdoptionAdStatus;
 use App\Enums\PetCategory;
 use App\Models\DogBreed;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -37,6 +38,7 @@ class AdoptionAdFactory extends Factory
             'contact_phone_number' => $this->faker->phoneNumber,
             'contact_email' => $this->faker->email,
             'base_image' => "cat-and-dog-silhouette-logo-for-pet-shop-Graphics-14248406-1.jpg",
+            'user_id' => User::inRandomOrder()->first()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];

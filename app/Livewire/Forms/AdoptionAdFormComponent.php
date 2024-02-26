@@ -263,7 +263,9 @@ class AdoptionAdFormComponent extends Component implements HasForms
     {
         $new_adoptionAd = AdoptionAd::updateOrCreate(
             ['id' => $this->adoptionAd->id],
-            $this->form->getState()
+            $this->form->getState() + [
+                'user_id' => auth()->id()
+            ]
         );
 
         if ($new_adoptionAd->id) {

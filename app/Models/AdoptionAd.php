@@ -30,7 +30,8 @@ class AdoptionAd extends Model
         'contact_phone_number',
         'contact_email',
         'base_image',
-        'images'
+        'images',
+        'user_id'
     ];
 
     protected $casts = [
@@ -54,5 +55,13 @@ class AdoptionAd extends Model
     public function adoptionInterests() :HasMany
     {
         return $this->hasMany(AdoptionInterest::class);
+    }
+
+    /*
+     *
+     */
+    public function user() :BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

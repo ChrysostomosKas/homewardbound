@@ -39,7 +39,9 @@ class AdoptionAdController extends Controller
      */
     public function edit(Request $request, $ad_id)
     {
-        if (Gate::denies('admin') && Gate::denies('support')) {
+        $adoptionAd = AdoptionAd::query()->where('id', '=', $ad_id)->get()->first();
+
+        if ($adoptionAd->user_id != auth()->id()) {
             abort('403', "Access to this resource is forbidden.");
         }
 
