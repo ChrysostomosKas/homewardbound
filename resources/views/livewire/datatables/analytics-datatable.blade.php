@@ -57,7 +57,7 @@
                                 <div class="w-full pt-10 text-center">
                                     <div class="flex flex-col justify-center text-base font-semibold text-gray-700">
                                         <x-svg class="w-8 h-8 mx-auto" svg='x'/>
-                                        <span>{{ __('No browsers found...') }}</span>
+                                        <span>{{ __('No Countries found...') }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -88,7 +88,7 @@
                                 <div class="w-full pt-10 text-center">
                                     <div class="flex flex-col justify-center text-base font-semibold text-gray-700">
                                         <x-svg class="w-8 h-8 mx-auto" svg='x'/>
-                                        <span>{{ __('No browsers found...') }}</span>
+                                        <span>{{ __('No Pages found...') }}</span>
                                     </div>
                                 </div>
                             </li>

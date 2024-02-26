@@ -5,9 +5,9 @@
                     @foreach($adoptionAds as $ad)
                         <div
                             class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[550px] transform hover:scale-105 transition-all ease-in-out duration-300">
-                            <img class="rounded-t-lg max-h-[280px]"
+                            <img class="rounded-t-lg object-cover h-64 w-full"
                                  src="{{ asset('storage/'.$ad->base_image) }}"
-                                 alt=""/>
+                                 alt="Ad Image">
                             <div class="py-6 px-8 rounded-lg bg-white">
                                 <a href="{{ route('adoption-ads.show', $ad->id) }}">
                                     <h1 class="text-gray-700 font-bold text-xl mb-3 hover:text-gray-900 ">{{ $ad->title }}</h1>
