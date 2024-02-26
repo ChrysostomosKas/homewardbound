@@ -1,4 +1,7 @@
     <div>
+        <div class="flex justify-end mt-4">
+            <x-button.icon-button class="bg-gray-500 hover:bg-gray-600" href="{{ route('adoption-ads.create') }}" svg='plus'>{{ __('Create an Ad') }}</x-button.icon-button>
+        </div>
         <div class="relative px-4">
             <div class="relative mx-auto max-w-7xl">
                 <div class="mx-auto mt-12 grid gap-5 lg:max-w-none lg:grid-cols-3 p-4">

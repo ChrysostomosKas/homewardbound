@@ -69,8 +69,8 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
                                 ->minLength(10)
                                 ->maxLength(10)
                                 ->nullable(),
-                            DateTimePicker::make('appointment_time')
-                                ->label(__('Appointment time'))
+                            DateTimePicker::make('appointment_date')
+                                ->label(__('Appointment date'))
                                 ->seconds(false)
                                 ->required(),
                             Textarea::make('reason')
@@ -79,7 +79,19 @@ class MedicalRecordShow extends Component implements HasForms, HasTable
                                 ->columnSpan(1)
                                 ->rows(10)
                                 ->cols(10)
-                                ->nullable()
+                                ->nullable(),
+                            Textarea::make('diagnosis')
+                                ->label(__('Diagnosis'))
+                                ->columnSpan(1)
+                                ->rows(10)
+                                ->cols(10)
+                                ->nullable(),
+                            Textarea::make('prescription')
+                                ->label(__('Prescription'))
+                                ->columnSpan(1)
+                                ->rows(10)
+                                ->cols(10)
+                                ->nullable(),
                         ])
                         ->using(function (DoctorAppointment $record, array $data): DoctorAppointment {
                             $record->update($data);

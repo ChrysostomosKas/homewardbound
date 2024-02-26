@@ -70,7 +70,7 @@ class AdoptionAdFormComponent extends Component implements HasForms
                 'type_of_pet' => $this->adoptionAd->type_of_pet->name,
                 'contact_email' => $this->adoptionAd->contact_email,
                 'base_image' => $this->adoptionAd->base_image,
-                'pet_age_unit' => $this->adoptionAd->pet_age_unit,
+                'pet_age_unit' => $this->adoptionAd->pet_age_unit ?? 'Months',
                 'images' => $this->adoptionAd->images,
             ]);
         } else {
@@ -134,21 +134,15 @@ class AdoptionAdFormComponent extends Component implements HasForms
                         ]),
                     Grid::make(2)
                         ->schema([
-                            Select::make('breed')
-                                ->label(__('Breed'))
-                                ->options(fn(Get $get): Collection =>
-                                match ($get('type_of_pet')) {
-                                    'Dog' => DogBreed::pluck('name_en', 'name_en'),
-                                    'Cat' => CatBreed::pluck('name_en', 'name_en'),
-                                    'Bird' => BirdBreed::pluck('name_en', 'name_en'),
-                                    'Fish' => FishBreed::pluck('name_en', 'name_en'),
-                                    'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
-                                    'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
-                                    'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
-                                    'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
-                                    'Horse' => HorseBreed::pluck('name_en', 'name_en'),
-                                    default => collect([]),
-                                })
+                            Select::make('size')
+                                ->label(__('Size'))
+                                ->columnSpan(1)
+                                ->options([
+                                    'Small' => __('Small'),
+                                    'Medium' => __('Medium'),
+                                    'Large' => __('Large'),
+                                    'extra_large' => __('Extra Large')
+                                ])
                                 ->required(),
                             Select::make('gender')
                                 ->label(__('Gender'))
@@ -178,15 +172,21 @@ class AdoptionAdFormComponent extends Component implements HasForms
                         ]),
                     Grid::make(2)
                         ->schema([
-                            Select::make('size')
-                                ->label(__('Size'))
-                                ->columnSpan(1)
-                                ->options([
-                                    'Small' => __('Small'),
-                                    'Medium' => __('Medium'),
-                                    'Large' => __('Large'),
-                                    'extra_large' => __('Extra Large')
-                                ])
+                            Select::make('breed')
+                                ->label(__('Breed'))
+                                ->options(fn(Get $get): Collection =>
+                                match ($get('type_of_pet')) {
+                                    'Dog' => DogBreed::pluck('name_en', 'name_en'),
+                                    'Cat' => CatBreed::pluck('name_en', 'name_en'),
+                                    'Bird' => BirdBreed::pluck('name_en', 'name_en'),
+                                    'Fish' => FishBreed::pluck('name_en', 'name_en'),
+                                    'Rabbit' => RabbitBreed::pluck('name_en', 'name_en'),
+                                    'Hamster' => HamsterBreed::pluck('name_en', 'name_en'),
+                                    'Reptile' => ReptileBreed::pluck('name_en', 'name_en'),
+                                    'Amphibian' => AmphibianBreed::pluck('name_en', 'name_en'),
+                                    'Horse' => HorseBreed::pluck('name_en', 'name_en'),
+                                    default => collect([]),
+                                })
                                 ->required(),
                             TextInput::make('color')
                                 ->label(__('Color'))
