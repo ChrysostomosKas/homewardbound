@@ -38,12 +38,14 @@
 
                     // Check if the marker is existing or new
                     if (markerData) {
-                        var assetUrl = "{{ asset('storage/app/public') }}";
+                        var assetUrl = "{{ asset('storage/') }}";
                         // Existing marker
                         var contentString = `
                             <div>
                                 <p>Contact Phone Number: ${markerData.contact_phone_number}</p>
-                                <p>Image: <img src="${assetUrl}/${markerData.image}" alt="Marker Image" style="max-width: 100px;"></p>
+                            </div>
+                            <div>
+                                <img src="${assetUrl}/${markerData.image}" alt="Marker Image" style="max-width: 100px;">
                             </div>`;
 
                         // Set content for infowindow
