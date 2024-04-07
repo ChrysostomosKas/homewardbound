@@ -9,6 +9,7 @@ use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MapMarkerController;
 use App\Http\Controllers\MedicalRecordController;
+use App\Http\Controllers\PetHealthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\UserController;
@@ -98,6 +99,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/analytics', AnalyticsController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Analytics Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('/petHeath', PetHealthController::class);
 
     /*
     |--------------------------------------------------------------------------

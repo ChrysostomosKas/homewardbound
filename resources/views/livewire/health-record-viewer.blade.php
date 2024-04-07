@@ -33,6 +33,17 @@
                         <span class="mr-auto">{{ __('Create Appointment') }}</span>
                         <x-tabler-calendar-plus class="w-6 h-6 text-black"/>
                     </a>
+                    @if(!$medicalRecord->pet->petHealth)
+                        <a href="{{ route('petHeath.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                            <span class="mr-auto">{{ __('Add pet health info') }}</span>
+                            <x-tabler-file-plus class="w-6 h-6 text-black"/>
+                        </a>
+                    @else
+                        <a href="{{ route('petHeath.edit', $medicalRecord->pet->petHealth->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                            <span class="mr-auto">{{ __('Edit pet health info') }}</span>
+                            <x-tabler-file-pencil class="w-6 h-6 text-black"/>
+                        </a>
+                    @endif
                     <a href="{{ route('medical-records.show', $medicalRecord->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
                         <span class="mr-auto">{{ __('Overview') }}</span>
                         <x-tabler-eye class="w-6 h-6 text-black"/>
