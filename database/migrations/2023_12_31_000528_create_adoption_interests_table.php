@@ -24,6 +24,11 @@ return new class extends Migration
             $table->string('contact_phone_number');
             $table->string('city');
             $table->string('zip_code');
+            $table->string('contact_birth_date');
+            $table->string('address');
+            $table->string('animal_giveup_history');
+            $table->string('existing_pets');
+            $table->boolean('family_agreement_for_animal');
             $table->string('contact_email');
             $table->text('reason')->nullable();
             $table->text('adoption_certificate')->nullable();

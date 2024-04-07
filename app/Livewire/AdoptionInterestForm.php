@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\AdoptionInterest;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +20,11 @@ class AdoptionInterestForm extends Component implements HasForms
     public string $adoption_ad_id;
     public string $contact_phone_number = '';
     public string $city = '';
+    public string $address = '';
+    public string $animal_giveup_history = '';
+    public string $existing_pets = '';
+    public bool $family_agreement_for_animal = false;
+    public string $contact_birth_date = '';
     public string $zip_code = '';
     public string $contact_email = '';
 
@@ -35,6 +42,11 @@ class AdoptionInterestForm extends Component implements HasForms
                 'city' => $user->city,
                 'zip_code' => $user->zip_code,
                 'contact_email' => $user->email,
+                'address' => $user->address,
+                'animal_giveup_history' => '',
+                'existing_pets' => '',
+                'contact_birth_date' => $user->birth_date ?? now(),
+                'family_agreement_for_animal' => false,
             ]);
         }
     }
@@ -49,20 +61,24 @@ class AdoptionInterestForm extends Component implements HasForms
         return [
             Section::make(__('Let Us Know You are Interested in Adopting'))
                 ->schema([
-                    Grid::make(2)
+                    Grid::make(3)
                         ->schema([
                             TextInput::make('city')
                                 ->label(__('City'))
                                 ->columnSpan(1)
                                 ->required()
                                 ->dehydrated(fn () => true),
+                            TextInput::make('address')
+                                ->label('Address')
+                                ->columnSpan(1)
+                                ->required(),
                             TextInput::make('zip_code')
                                 ->label('Zip Code')
                                 ->columnSpan(1)
                                 ->required()
                                 ->dehydrated(fn () => true),
                         ]),
-                    Grid::make(2)
+                    Grid::make(3)
                         ->schema([
                             TextInput::make('contact_phone_number')
                                 ->label(__('Contact phone-number'))
@@ -73,6 +89,31 @@ class AdoptionInterestForm extends Component implements HasForms
                                 ->label(__('Contact email'))
                                 ->columnSpan(1)
                                 ->email()
+                                ->required()
+                                ->dehydrated(fn () => true),
+                            DatePicker::make('contact_birth_date')
+                                ->label(__('Contact Birth Date'))
+                                ->columnSpan(1)
+                                ->required()
+                        ]),
+                    Grid::make(2)
+                        ->schema([
+                            TextInput::make('animal_giveup_history')
+                                ->label(__('Have you ever given up an animal that you could no longer care for?'))
+                                ->columnSpan(1)
+                                ->required()
+                                ->dehydrated(fn () => true),
+                            TextInput::make('existing_pets')
+                                ->label(__('Have you had other pets?'))
+                                ->columnSpan(1)
+                                ->required()
+                                ->dehydrated(fn () => true)
+                        ]),
+                    Grid::make(1)
+                        ->schema([
+                            Checkbox::make('family_agreement_for_animal')
+                                ->label(__('Do all members of your family agree to getting an animal?'))
+                                ->columnSpan(1)
                                 ->required()
                                 ->dehydrated(fn () => true)
                         ]),
