@@ -45,4 +45,13 @@ enum AdoptionAdStatus implements HasLabel
             self::Rejected => 'folder-cancel'
         };
     }
+
+    public function color(): string
+    {
+        return match ($this) {
+            self::Open  => 'yellow',
+            self::Closed => 'green',
+            self::Rejected => 'red',
+        };
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\AdoptionAdStatus;
 use App\Models\AdoptionInterest;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
@@ -10,6 +11,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AdoptionInterestForm extends Component implements HasForms
@@ -135,6 +137,17 @@ class AdoptionInterestForm extends Component implements HasForms
         );
 
         if ($new_adoptionInterest->id) {
+            activity()
+                ->performedOn($new_adoptionInterest)
+                ->causedBy(Auth::user())
+                ->setEvent('created')
+                ->withProperties([
+                    'name' => AdoptionAdStatus::Open->name(),
+                    'color' => AdoptionAdStatus::Open->color(),
+                    'svg' => AdoptionAdStatus::Open->icon()
+                ])
+                ->log('The request created successfully');
+
             $this->dispatch('notification', [
                 'success' => true,
                 'message' => __('We appreciate your interest! Our team will contact you soon.'),

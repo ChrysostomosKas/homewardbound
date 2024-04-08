@@ -70,6 +70,12 @@
                         <x-tabler-user-cancel class="w-6 h-6 me-2 text-gray-400 group-hover:text-gray-500 hover:cursor-pointer"/>
                         {{ __('Account Settings') }}
                     </a>
+                    <a
+                        :class="{ 'text-indigo-700 bg-gray-200' : tab === 'adoptionRequest'}" @click="tab = 'adoptionRequest'"
+                        class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-indigo-700 hover:cursor-pointer group">
+                        <x-tabler-file class="w-6 h-6 me-2 text-gray-400 group-hover:text-gray-500 hover:cursor-pointer"/>
+                        {{ __('Last pet adoption request') }}
+                    </a>
                 </li>
             </ul>
         </div>
@@ -90,6 +96,12 @@
             <div x-show="tab === 'accountSettings'" class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
+                </div>
+            </div>
+
+            <div x-show="tab === 'adoptionRequest'" class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="w-full">
+                <livewire:user-last-adoption-request-status-log-component />
                 </div>
             </div>
         </div>

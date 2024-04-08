@@ -20,6 +20,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
@@ -99,8 +100,29 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                 || !is_null($record->adoption_certificate)
                                 || ($record->status == AdoptionAdStatus::Rejected->name && !is_null($record->reason))
                             ){
+                                activity()
+                                    ->performedOn($record)
+                                    ->causedBy(Auth::user())
+                                    ->setEvent('created')
+                                    ->withProperties([
+                                        'name' => $record->status->name(),
+                                        'color' => $record->status->color(),
+                                        'svg' => 'email'
+                                    ])
+                                    ->log('An informational email has been sent to your email address');
                                 dispatch(new SendAdoptionInterestStatusChangeEmailJob($record->user, $record));
                             }
+                            activity()
+                                ->performedOn($record)
+                                ->causedBy(Auth::user())
+                                ->setEvent('updated')
+                                ->withProperties([
+                                    'name' => AdoptionAdStatus::Closed->name(),
+                                    'color' => AdoptionAdStatus::Rejected->color(),
+                                    'svg' => 'trash'
+                                ])
+                                ->log('Your request status has changed');
+
                             return $record;
                         })
                         ->after(function () {
@@ -110,7 +132,18 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                 'delay' => 5000
                             ]);
                         }),
-                    DeleteAction::make()->label(__('Delete')),
+                    DeleteAction::make()->label(__('Delete'))->after(function (AdoptionInterest $record){
+                        activity()
+                            ->performedOn($record)
+                            ->causedBy(Auth::user())
+                            ->setEvent('deleted')
+                            ->withProperties([
+                                'name' => AdoptionAdStatus::Closed->name(),
+                                'color' => AdoptionAdStatus::Rejected->color(),
+                                'svg' => 'trash'
+                            ])
+                            ->log('The request created successfully');
+                    }),
                 ])->tooltip('Actions')
             ]);
     }

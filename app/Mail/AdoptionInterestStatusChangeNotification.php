@@ -36,12 +36,12 @@ class AdoptionInterestStatusChangeNotification extends Mailable
         if (!file_exists($pdfPath)) {
             return $this->markdown('emails.adoptionInterest-status-change-notification')
                 ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
-                ->subject('Η κατάσταση του αίτησης σας άλλαξε');
+                ->subject(__('Your request status has changed'));
         } else {
             $pdfContent = file_get_contents($pdfPath);
             return $this->markdown('emails.adoptionInterest-status-change-notification')
                 ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
-                ->subject('Η κατάσταση του αίτησης σας άλλαξε')
+                ->subject(__('Your request status has changed'))
                 ->attachData($pdfContent, 'filename.pdf');
         }
     }
