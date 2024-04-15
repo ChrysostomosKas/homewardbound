@@ -47,6 +47,7 @@
         </div>
     </div>
 
+    @if($medicalRecord->pet->petHealth)
     <div x-show="openHealthPetInfo" class="mt-4">
         <div class="max-w-full mx-4 py-6 sm:mx-auto sm:px-6 lg:px-8">
             <div class="sm:flex sm:space-x-4">
@@ -813,6 +814,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <div class="flex justify-end mt-4">
         <x-button.icon-button class="bg-pink-500 hover:bg-pink-600" href="{{ route('appointments.create', ['medical_record_id' => $medicalRecord->id]) }}" svg='plus'>{{ __('Create an appointment') }}</x-button.icon-button>
