@@ -5,6 +5,7 @@ use App\Http\Controllers\AdoptionInterestController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
+use App\Http\Controllers\CreateBreedController;
 use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MapMarkerController;
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('breeds', BreedController::class);
+    Route::get('/create/{breed_type}', [CreateBreedController::class, 'create'])->name('breedCategory.create');
     /*
     |--------------------------------------------------------------------------
     | Users Routes

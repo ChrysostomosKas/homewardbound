@@ -16,15 +16,6 @@ class BreedController extends Controller
         return view('forms.breeds.index');
     }
 
-    public function create()
-    {
-        if (Gate::denies('administrate')) {
-            abort('403', "Δεν έχετε πρόσβαση");
-        }
-
-        return view('forms.breeds.create');
-    }
-
     public function show($id)
     {
         //

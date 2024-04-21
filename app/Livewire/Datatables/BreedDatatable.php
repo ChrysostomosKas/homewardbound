@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
@@ -88,6 +89,14 @@ class BreedDatatable extends Component implements HasForms, HasTable
                     DeleteAction::make()->label(__('Delete')),
                 ])->tooltip('Actions')
             ]);
+    }
+
+    /**
+     *
+     */
+    public function createBreedRecord()
+    {
+        return Redirect::route('breedCategory.create', $this->breed_type);
     }
 
     public function render()
