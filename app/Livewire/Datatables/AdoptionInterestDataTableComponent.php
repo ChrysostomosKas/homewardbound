@@ -115,6 +115,20 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                                         'svg' => 'email'
                                     ])
                                     ->log('An informational email has been sent to your email address');
+
+                                if (!is_null($record->adoption_certificate)) {
+                                    activity()
+                                        ->performedOn($record)
+                                        ->causedBy(Auth::user())
+                                        ->setEvent('created')
+                                        ->withProperties([
+                                            'name' => $record->status->name(),
+                                            'color' => $record->status->color(),
+                                            'svg' => 'file'
+                                        ])
+                                        ->log('The adoption certificate has been sent');
+                                }
+
                                 dispatch(new SendAdoptionInterestStatusChangeEmailJob($record->user, $record));
                             }
                             activity()
