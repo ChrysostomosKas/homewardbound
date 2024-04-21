@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\BreedController;
 use App\Http\Controllers\CreateBreedController;
 use App\Http\Controllers\DoctorAppointmentController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MapMarkerController;
 use App\Http\Controllers\MedicalRecordController;
@@ -28,6 +29,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__.'/auth.php';
+
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
 

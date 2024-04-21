@@ -57,7 +57,7 @@
                     <span class="h-px w-16 bg-black"></span>
                 </div>
                 <div class="flex justify-center gap-5 w-full">
-                    <a href="/auth/google/redirect"
+                    <a href="{{ route('auth.google') }}"
                             class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-600 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
                         <x-tabler-brand-google class="w-6 mr-2 h-6 text-black"/>
 
