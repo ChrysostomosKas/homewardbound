@@ -32,8 +32,9 @@ class MedicalRecordDatatable extends Component implements HasForms, HasTable
             ->query(MedicalRecord::query()->with('pet'))
             ->columns([
                 TextColumn::make('pet.name')->sortable()->label(__('Pet Name')),
-                TextColumn::make('spaying_neutering_date')->label(__('Spaying Neutering Status')),
-                TextColumn::make('created_at')->searchable()->sortable()->label(__('created_at')),
+                TextColumn::make('spaying_neutering_date')->label(__('Spaying Neutering Date')),
+                TextColumn::make('emergency_contact_number')->label(__('Emergency Contact Number')),
+                TextColumn::make('created_at')->sortable()->label(__('created_at')),
             ])->filters([
                 Filter::make('created_at')
                     ->form([

@@ -147,7 +147,6 @@ class MedicalRecordFormComponent extends Component implements HasForms
                                 ->columnSpan(1)
                                 ->nullable()
                         ]),
-                        ]),
                     Grid::make(1)
                         ->schema([
                     Select::make('breed')
@@ -175,6 +174,7 @@ class MedicalRecordFormComponent extends Component implements HasForms
                                 ->cols(5)
                                 ->nullable()
                         ])
+                        ]),
                 ]),
             Section::make(__('Pet Medical Record Form'))
                 ->description(__('Provide the following information about the pets medical history.'))

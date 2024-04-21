@@ -2,12 +2,10 @@
 
 namespace App\Livewire\Datatables;
 
-use App\Enums\AdoptionAdStatus;
 use App\Models\AdoptionAd;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\ActionGroup;
@@ -59,6 +57,8 @@ class AdminAdoptionAdDatatable extends Component implements HasForms, HasTable
                     })
             ])->actions([
                 ActionGroup::make([
+                    ViewAction::make('edit')->label(__('Edit'))
+                        ->url(fn (AdoptionAd $record): string => route('adoption-ads.show', $record)),
                     EditAction::make()->label(__('Edit'))
                         ->form([
                             Select::make('status')->label(__('Status'))

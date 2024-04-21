@@ -36,8 +36,10 @@ class PetHealthController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PetHealth $petHealth)
+    public function edit($petHealthId)
     {
+        $petHealth = PetHealth::find($petHealthId);
+
         return view('petHeath.edit', [
             'pet_health_id' => $petHealth->id,
             'pet_id' => $petHealth->pet_id

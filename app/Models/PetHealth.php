@@ -10,7 +10,7 @@ class PetHealth extends Model
 {
     use HasFactory;
 
-    protected $table = 'pet_healths';
+//    protected $table = 'pet_healths';
 
     protected $fillable = [
         'bathed_at',

@@ -21,6 +21,15 @@ class MedicalRecord extends Model
         'behavioral_notes'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'spaying_neutering_date' => 'date'
+    ];
+
     public function pet(): BelongsTo
     {
         return $this->belongsTo(Pet::class);

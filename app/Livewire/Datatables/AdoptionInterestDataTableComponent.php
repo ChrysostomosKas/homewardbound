@@ -51,9 +51,14 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                 TextColumn::make('user.full_name')->sortable()->label(__('Full Name')),
                 TextColumn::make('contact_phone_number')->searchable()->sortable()->label(__('Contact phone-number')),
                 TextColumn::make('city')->searchable()->sortable()->label(__('City')),
-                TextColumn::make('zip_code')->sortable()->label(__('Zip Code')),
+                TextColumn::make('address')->searchable()->sortable()->label(__('Address')),
                 TextColumn::make('contact_email')->searchable()->sortable()->label(__('Contact email')),
-                TextColumn::make('status')->label(__('Status')),
+                TextColumn::make('status')->label(__('Status'))->badge()
+                    ->color(fn (AdoptionAdStatus $state): string => match ($state) {
+                        AdoptionAdStatus::Open => 'gray',
+                        AdoptionAdStatus::Closed => 'success',
+                        AdoptionAdStatus::Rejected => 'warning',
+                    }),
             ])->filters([
                 Filter::make('created_at')->label(__('created_at'))
                     ->form([

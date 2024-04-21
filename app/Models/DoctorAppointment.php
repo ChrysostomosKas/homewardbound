@@ -18,6 +18,17 @@ class DoctorAppointment extends Model
         'reason',
         'location',
         'contact_number',
+        'diagnosis',
+        'prescription',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'appointment_date' => 'datetime'
     ];
 
     public function medicalRecord(): BelongsTo
