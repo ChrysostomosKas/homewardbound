@@ -119,5 +119,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::resource('/report-map', MapMarkerController::class);
+    Route::get('/report-request', [MapMarkerController::class, 'requestIndex'])->name('report-request');
     Route::post('/save-location', [MapMarkerController::class, 'store'])->name('save.location');
 });

@@ -14,8 +14,16 @@
                             <div
                                 class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 group-hover:top-[-5%] group-hover:opacity-[0.9] duration-300 w-36 h-36 bg-gray-900 rounded-xl">
                                 <span class="w-full h-full flex items-center justify-center">
-                                            <x-dynamic-component :component="'tabler-'.$category['icon']"
-                                            class="h-14 w-14 text-white"/>
+                                    @if($category['icon'] == 'mouse')
+                                        <x-icons.hamster />
+                                    @elseif($category['icon'] == 'reptile')
+                                        <x-icons.reptile />
+                                    @elseif($category['icon'] == 'amphibian')
+                                        <x-icons.amphibian />
+                                    @else
+                                        <x-dynamic-component :component="'tabler-'.$category['icon']"
+                                                             class="h-14 w-14 text-white"/>
+                                    @endif
                                 </span>
                             </div>
                         </div>

@@ -24,19 +24,17 @@ class UserAdoptionInterests extends Component implements HasForms, HasTable
      */
     public function table(Table $table): Table
     {
-        $user_adoption_ads_ids =
-
-            DB::table('adoption_ad_user')
-
-                ->pluck('adoption_ad_id')
-                ->toArray();
-
         return $table
             ->query(AdoptionInterest::query()->with('adoptionAd')->where('user_id', '=', auth()->id()))
             ->heading(__('Your applications of Adoption Interests'))
             ->columns([
                 TextColumn::make('adoptionAd.title')->label(__('Adoption ad')),
-                TextColumn::make('status')->label(__('Status')),
+                TextColumn::make('status')->label(__('Status'))->badge()
+                    ->color(fn (AdoptionAdStatus $state): string => match ($state) {
+                        AdoptionAdStatus::Open => 'gray',
+                        AdoptionAdStatus::Closed => 'success',
+                        AdoptionAdStatus::Rejected => 'warning',
+                    }),
                 TextColumn::make('created_at')->label(__('created_at')),
             ]);
     }

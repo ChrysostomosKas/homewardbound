@@ -8,6 +8,7 @@
     <x-sidebar.item href="{{ route('analytics.index') }}" :active="request()->routeIs('#.*')" icon="presentation-analytics">{{ __('Analytics') }}</x-sidebar.item>
     <x-sidebar.item href="statistics" :active="request()->routeIs('statistics.*')" icon="device-analytics">{{ __('Statistics') }}</x-sidebar.item>
     <x-sidebar.item href="{{ route('users.index') }}" :active="request()->routeIs('users.*')" icon="users">{{ __('Users') }}</x-sidebar.item>
+    <x-sidebar.item href="{{ route('report-request') }}" :active="request()->routeIs('report-request.*')" icon="map-check">{{ __('Pet Requests') }}</x-sidebar.item>
 @endif
 @can('support')
     <x-sidebar.item href="{{ route('breeds.index') }}" :active="request()->routeIs('breeds.*')" icon="list-tree">{{ __('Breeds') }}</x-sidebar.item>

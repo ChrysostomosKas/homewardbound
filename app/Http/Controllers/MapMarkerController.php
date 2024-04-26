@@ -6,6 +6,7 @@ use App\Jobs\AddMarkerJob;
 use App\Jobs\InformSupportUsersJob;
 use App\Models\MapMarker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MapMarkerController extends Controller
 {
@@ -62,18 +63,14 @@ class MapMarkerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *
      */
-    public function update(Request $request, MapMarker $mapMarker)
+    public function requestIndex()
     {
-        //
-    }
+        if (Gate::denies('admin')) {
+            abort('403', "Access to this resource is forbidden.");
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(MapMarker $mapMarker)
-    {
-        //
+        return view('maps.requestIndex');
     }
 }

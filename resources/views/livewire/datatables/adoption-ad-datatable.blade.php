@@ -1,11 +1,40 @@
-    <div>
-        <div class="flex justify-end mt-4">
-            <x-button.icon-button class="bg-gray-500 hover:bg-gray-600" href="{{ route('adoption-ads.create') }}" svg='plus'>{{ __('Create an Ad') }}</x-button.icon-button>
+    <div x-data="{open: false, buttonText: 'Show Filters'}"
+    >
+        <div class="flex justify-end mt-4 space-x-2">
+                <x-button.icon-button class="bg-gray-500 hover:bg-gray-600" href="{{ route('adoption-ads.create') }}" svg='plus'>{{ __('Create an Ad') }}</x-button.icon-button>
+                <x-button.icon-button
+                    @click="open=!open"
+                    x-text="open ? '{{ __('Hide Filters') }}' : '{{ __('Show Filters') }}'"
+                    class="bg-gray-500 hover:bg-gray-600">
+                <span x-text="buttonText"></span></x-button.icon-button>
         </div>
+
+        <div x-show="open" class="bg-white shadow-lg rounded-md p-6 mt-4">
+            <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-pink-600 flex items-center justify-center rounded-lg shadow-lg mr-4">
+                    <x-tabler-filters class="w-10 h-10 text-white fill-white"/>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-semibold text-gray-800">{{ __('Filters') }}</h4>
+                </div>
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+               @foreach($this->filters as $index => $filter)
+                <div>
+                    <label class="inline-flex mt-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-600"
+                               wire:model="filters.{{ $index }}"
+                        ><span class="ml-2 text-gray-700">{{ $index }}</span>
+                    </label>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
         <div class="relative px-4">
             <div class="relative mx-auto max-w-7xl">
                 <div class="mx-auto mt-12 grid gap-5 lg:max-w-none lg:grid-cols-3 p-4">
-                    @foreach($adoptionAds as $ad)
+                    @foreach($this->adoptionAds as $ad)
                         <div
                             class="flex flex-col overflow-hidden rounded-lg shadow-lg h-[550px] transform hover:scale-105 transition-all ease-in-out duration-300">
                             <img class="rounded-t-lg object-cover h-64 w-full"
@@ -49,7 +78,7 @@
                     @endforeach
                 </div>
                 <div class="mt-6">
-                    {{ $adoptionAds->links() }}
+                    {{ $this->adoptionAds->links() }}
                 </div>
             </div>
         </div>

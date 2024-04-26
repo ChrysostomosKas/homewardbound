@@ -24,11 +24,12 @@ class GoogleLoginController extends Controller
         if ($existingUser) {
             auth()->login($existingUser, true);
         } else {
+            $avatar = new Avatar();
             $newUser = new User();
             $newUser->first_name = $user->name;
             $newUser->email = $user->email;
             $newUser->google_id = $user->id;
-            $newUser->avatar = Avatar::create($newUser->first_name)->toBase64();
+            $newUser->avatar = $avatar->create($newUser->first_name)->toBase64();
             $newUser->password = bcrypt(request(Str::random()));
             $newUser->save();
 
