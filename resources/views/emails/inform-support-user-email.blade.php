@@ -9,8 +9,8 @@ assistance or coordinate appropriate help for the pet in need.
 
 If you have any questions or require further information, please contact to {{ $contact_phone_number }}
 
-    <x-mail::button :url="{{ route('report-request') }}">
-        View Order
+    <x-mail::button :url="route('report-request')">
+        View report requests
     </x-mail::button>
 
 Thanks,<br>

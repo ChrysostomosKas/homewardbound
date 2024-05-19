@@ -3,16 +3,7 @@
 namespace App\Livewire\Datatables;
 
 use App\Enums\ReportRequestStatus;
-use App\Models\AmphibianBreed;
-use App\Models\BirdBreed;
-use App\Models\CatBreed;
-use App\Models\DogBreed;
-use App\Models\FishBreed;
-use App\Models\HamsterBreed;
-use App\Models\HorseBreed;
 use App\Models\MapMarker;
-use App\Models\RabbitBreed;
-use App\Models\ReptileBreed;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -47,10 +38,10 @@ class PinRequestsDatatable extends Component implements HasForms, HasTable
                 TextColumn::make('contact_phone_number')->searchable()->sortable()->label('Contact phone-number'),
                 TextColumn::make('status')->label(__('Status'))->badge()
                     ->color(fn (ReportRequestStatus $state): string => match ($state) {
-                        ReportRequestStatus::Open => 'gray',
-                        ReportRequestStatus::Closed => 'green',
-                        ReportRequestStatus::Processing => 'yellow',
-                        ReportRequestStatus::Rejected => 'warning',
+                        ReportRequestStatus::Open => 'warning',
+                        ReportRequestStatus::Closed => 'success',
+                        ReportRequestStatus::Processing => 'warning',
+                        ReportRequestStatus::Rejected => 'rejected',
                     }),
                 TextColumn::make('created_at')->searchable()->sortable()->label('created_at'),
             ])->filters([

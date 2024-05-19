@@ -30,11 +30,17 @@ class MedicalRecord extends Model
         'spaying_neutering_date' => 'date'
     ];
 
+    /**
+     * Get the pet for the medicalRecord.
+     */
     public function pet(): BelongsTo
     {
         return $this->belongsTo(Pet::class);
     }
 
+    /**
+     * Get the doctorAppointments for the medicalRecord.
+     */
     public function doctorAppointments(): HasMany
     {
         return $this->hasMany(DoctorAppointment::class);

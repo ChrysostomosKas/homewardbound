@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -96,11 +96,35 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    /*
-     *
+    /**
+     * Get the likes for the users.
      */
-    public function likes(): BelongsToMany
+    public function likes(): HasMany
     {
-        return $this->belongsToMany(AdoptionAd::class)->withTimestamps();
+        return $this->hasMany(AdoptionAd::class);
+    }
+
+    /**
+     * Get the pets for the users.
+     */
+    public function pets(): HasMany
+    {
+        return $this->hasMany(Pet::class);
+    }
+
+    /**
+     * Get the adoptionAds for the users.
+     */
+    public function adoptionAds(): HasMany
+    {
+        return $this->hasMany(AdoptionAd::class);
+    }
+
+    /**
+     * Get the adoptionInterests for the users.
+     */
+    public function adoptionInterests(): HasMany
+    {
+        return $this->hasMany(AdoptionInterest::class);
     }
 }

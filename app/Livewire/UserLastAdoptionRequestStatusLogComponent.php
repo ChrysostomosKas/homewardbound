@@ -39,7 +39,7 @@ class UserLastAdoptionRequestStatusLogComponent extends Component implements Has
         ->last();
 
     return $table
-        ->query(Activity::query()->with('subject', 'causer')->where('activity_log.subject_id', '=', $lastAdoptionRequest->id))
+        ->query(Activity::query()->with('subject', 'causer'))
         ->columns([
             TextColumn::make('description')->label(__('Description')),
             TextColumn::make('causer.full_name')->label(__('Action By')),

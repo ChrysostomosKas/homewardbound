@@ -101,9 +101,9 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
                         ])
                         ->using(function (AdoptionInterest $record, array $data): AdoptionInterest {
                             $record->update($data);
-                            if ($record->status == AdoptionAdStatus::Closed->name
+                            if ($record->status == AdoptionAdStatus::Closed
                                 || !is_null($record->adoption_certificate)
-                                || ($record->status == AdoptionAdStatus::Rejected->name && !is_null($record->reason))
+                                || ($record->status == AdoptionAdStatus::Rejected && !is_null($record->reason))
                             ){
                                 activity()
                                     ->performedOn($record)

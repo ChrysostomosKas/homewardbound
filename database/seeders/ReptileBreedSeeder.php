@@ -26,8 +26,8 @@ class ReptileBreedSeeder extends Seeder
 
         foreach ($reptileBreeds as $breed) {
             ReptileBreed::create([
-                'name_gr' => $breed[0], // Greek name
-                'name_en' => $breed[1], // English name
+                'name_gr' => $breed[0],
+                'name_en' => $breed[1],
             ]);
         }
     }
