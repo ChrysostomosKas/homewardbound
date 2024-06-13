@@ -2,9 +2,8 @@
     <div class="flex justify-end mb-4">
         <x-button.icon-button wire:click.prevent="createMedicalRecord" svg='plus'>{{ __('New Medical Folder') }}</x-button.icon-button>
     </div>
-    @foreach($this->medicalRecords as $medicalRecord)
-        <div
-            class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700 mb-4">
+    @foreach($medicalRecords as $medicalRecord)
+        <div x-data="{ open: false }" class="flex items-center bg-pink-600 rounded-md p-3 text-white cursor-pointer transition duration-500 ease-in-out hover:shadow hover:bg-pink-700 mb-4">
             <div>
                 <x-tabler-folder class="w-10 h-10 text-white fill-white"/>
             </div>
@@ -34,12 +33,12 @@
                         <x-tabler-calendar-plus class="w-6 h-6 text-black"/>
                     </a>
                     @if(!$medicalRecord->pet->petHealth)
-                        <a href="{{ route('petHeath.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                        <a href="{{ route('petHealth.create', ['pet_id' => $medicalRecord->pet->id]) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
                             <span class="mr-auto">{{ __('Add pet health info') }}</span>
                             <x-tabler-file-plus class="w-6 h-6 text-black"/>
                         </a>
                     @else
-                        <a href="{{ route('petHeath.edit', $medicalRecord->pet->petHealth->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
+                        <a href="{{ route('petHealth.edit', $medicalRecord->pet->petHealth->id) }}" class="flex py-3 px-2 text-sm font-bold hover:bg-gray-200">
                             <span class="mr-auto">{{ __('Edit pet health info') }}</span>
                             <x-tabler-file-pencil class="w-6 h-6 text-black"/>
                         </a>

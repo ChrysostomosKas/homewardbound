@@ -20,7 +20,7 @@ class PetHealthController extends Controller
      */
     public function create(Request $request)
     {
-        return view('petHeath.create', [
+        return view('petHealth.create', [
             'pet_id' => $request->get('pet_id')
         ]);
     }
@@ -40,7 +40,7 @@ class PetHealthController extends Controller
     {
         $petHealth = PetHealth::find($petHealthId);
 
-        return view('petHeath.edit', [
+        return view('petHealth.edit', [
             'pet_health_id' => $petHealth->id,
             'pet_id' => $petHealth->pet_id
         ]);

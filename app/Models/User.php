@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -99,9 +100,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the likes for the users.
      */
-    public function likes(): HasMany
+    public function likes(): BelongsToMany
     {
-        return $this->hasMany(AdoptionAd::class);
+        return $this->belongsToMany(AdoptionAd::class);
     }
 
     /**

@@ -58,18 +58,13 @@ class AdoptionAdDatatable extends Component
             : $user->likes()->attach($adoptionAdId);
     }
 
+    public function hasLike($adoptionAdId)
+    {
+        return auth()->user()->likes()->where('adoption_ad_id', $adoptionAdId)->exists();
+    }
+
     public function render()
     {
-        return view('livewire.datatables.adoption-ad-datatable', [
-            'hasLiked' => function ($adId) {
-                $user = auth()->user();
-
-                if ($user) {
-                    return $user->likes()->where('adoption_ad_id', $adId)->exists();
-                }
-
-                return false;
-            }
-        ]);
+        return view('livewire.datatables.adoption-ad-datatable');
     }
 }

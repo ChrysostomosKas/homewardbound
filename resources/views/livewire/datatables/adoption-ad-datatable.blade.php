@@ -66,7 +66,7 @@
                                     <div class="flex items-center mt-6 gap-2 hover:cursor-pointer"
                                          wire:click="toggleLike({{ $ad->id }})">
                                         <x-tabler-heart
-                                            class="w-8 h-8 {{ $hasLiked($ad->id) ? 'text-green-500 fill-green-500' : 'text-gray-300' }} hover:fill-neutral-400 hover:text-gray-400"/>
+                                            class="w-8 h-8 {{ $this->hasLike($ad->id) ? 'text-green-500 fill-green-500' : 'text-gray-300' }} hover:fill-neutral-400 hover:text-gray-400"/>
                                         <span>{{ $ad->likes()->count() }} Likes</span>
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@ class AdoptionInterest extends Model
     ];
 
     /*
-     *
+     * Get the user for the adoptionInterest.
      */
     public function user(): BelongsTo
     {
@@ -27,7 +27,7 @@ class AdoptionInterest extends Model
     }
 
     /*
-     *
+     * Get the adoptionAd for the adoptionInterest.
      */
     public function adoptionAd(): BelongsTo
     {

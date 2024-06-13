@@ -27,7 +27,12 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
         ]);
 
-        User::factory(10)->create();
+        $users = User::factory(10)->create();
+
+        foreach ($users as $user) {
+            $user->assignRole('User');
+        }
+
         AdoptionAd::factory(10)->create();
 
         $user = User::factory()->create([
@@ -36,6 +41,6 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Kasapidis',
         ]);
 
-        $user->assignRole('admin');
+        $user->assignRole('Admin');
     }
 }

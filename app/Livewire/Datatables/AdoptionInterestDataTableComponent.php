@@ -44,8 +44,13 @@ class AdoptionInterestDataTableComponent extends Component implements HasForms, 
         return $table
             ->heading(__('Adoption Interests Overview'))
             ->query(AdoptionInterest::query()
-                                            ->when(in_array(2, $user->roles->pluck('id')->toArray()), function ($subQuery) use ($user) {
-                                                $subQuery->where('user_id', '=', $user->id);
+                                            ->with('adoptionAd')
+                                            ->when(
+                                                in_array(2, $user->roles->pluck('id')->toArray()), function ($subQuery) use ($user) {
+                                                $subQuery->where('user_id', '=', $user->id)
+                                                    ->orWhereHas('adoptionAd', function ($subQuery) use ($user) {
+                                                        $subQuery->where('user_id', $user->id);
+                                                    });
                                             }))
             ->columns([
                 TextColumn::make('user.full_name')->sortable()->label(__('Full Name')),

@@ -111,7 +111,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     | Analytics Routes
     |--------------------------------------------------------------------------
     */
-    Route::resource('/petHeath', PetHealthController::class);
+    Route::resource('/petHealth', PetHealthController::class);
 
     /*
     |--------------------------------------------------------------------------
