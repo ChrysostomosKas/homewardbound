@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('lng');
             $table->string('contact_phone_number')->nullable();
             /** ENUM */
-            $table->string('status')->default(ReportRequestStatus::Processing->name);
+            $table->string('status')->default(ReportRequestStatus::Open->name);
             /** ENUM */
             $table->text('image')->nullable();
             $table->timestamps();

@@ -30,10 +30,12 @@ class AdoptionInterestStatusChangeNotification extends Mailable
      */
     public function build()
     {
-        $pdfFileName = $this->adoptionInterest->adoption_certificate;
-        $pdfPath = storage_path('app/public/' . $pdfFileName);
+        $pdfFileName = $this->adoptionInterest->adoption_certificate ?? null;
+        if (!is_null($pdfFileName)) {
+            $pdfPath = storage_path('app/public/' . $pdfFileName);
+        }
 
-        if (!file_exists($pdfPath)) {
+        if (is_null($pdfFileName)) {
             return $this->markdown('emails.adoptionInterest-status-change-notification')
                 ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
                 ->subject(__('Your request status has changed'));
@@ -42,7 +44,7 @@ class AdoptionInterestStatusChangeNotification extends Mailable
             return $this->markdown('emails.adoptionInterest-status-change-notification')
                 ->from('no-reply@homewardbound.gr', 'Homewardbound Inc.')
                 ->subject(__('Your request status has changed'))
-                ->attachData($pdfContent, 'filename.pdf');
+                ->attachData($pdfContent, 'AdoptionCertificate.pdf');
         }
     }
 

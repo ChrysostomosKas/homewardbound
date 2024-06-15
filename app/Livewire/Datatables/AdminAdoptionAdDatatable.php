@@ -57,7 +57,7 @@ class AdminAdoptionAdDatatable extends Component implements HasForms, HasTable
                     })
             ])->actions([
                 ActionGroup::make([
-                    ViewAction::make('edit')->label(__('Edit'))
+                    ViewAction::make('edit')->label(__('Show'))
                         ->url(fn (AdoptionAd $record): string => route('adoption-ads.show', $record)),
                     EditAction::make()->label(__('Edit'))
                         ->form([
