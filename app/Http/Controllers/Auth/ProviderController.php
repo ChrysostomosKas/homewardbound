@@ -30,12 +30,15 @@ class ProviderController extends Controller
             ])->first();
 
             if (!$user) {
+                $avatar = new Avatar();
+                list($firstName, $lastName) = explode(' ', $socialUser->nickname);
                 $user = User::create([
-                    'first_name' => $socialUser->nickname,
-                    'last_name' => $socialUser->nickname,
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'username' => $socialUser->nickname,
                     'email' => $socialUser->email,
                     'provider_token' => $socialUser->token,
-                    'avatar' => Avatar::create($socialUser->nickname)->toBase64(),
+                    'avatar' => $avatar->create($socialUser->nickname)->toBase64(),
                     'provider_id' => $socialUser->id,
                     'provider' => $provider
                 ]);
