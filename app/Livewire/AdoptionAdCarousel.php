@@ -15,6 +15,7 @@ class AdoptionAdCarousel extends Component
     {
         $this->adoptionAds = AdoptionAd::query()
             ->where('status', '=', AdoptionAdStatus::Open->name)
+            ->where('type_of_pet', '=', $this->adoptionAd->type_of_pet->name)
             ->whereNotIn('user_id', [auth()->id(), $this->adoptionAd->user_id])
             ->orderBy('created_at', 'desc')
             ->get()

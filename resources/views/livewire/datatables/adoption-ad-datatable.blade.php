@@ -23,7 +23,7 @@
                 <div>
                     <label class="inline-flex mt-3">
                         <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-600"
-                               wire:model="filters.{{ $index }}"
+                               wire:click.debounce="$toggle('filters.{{ $index }}')"
                         ><span class="ml-2 text-gray-700">{{ $index }}</span>
                     </label>
                 </div>
